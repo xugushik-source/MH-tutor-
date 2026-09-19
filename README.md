@@ -27,11 +27,13 @@ npm run lint
 
 ## i18n architecture
 
-`src/i18n/config.ts` declares four locales (`ru`, `hy`, `ka`, `en`); `src/i18n/dictionaries/ru.ts` is the single source of truth for all UI chrome strings (nav, hero, wizard, booking, etc.), typed via the `Dictionary` type. `hy.ts`, `ka.ts` and `en.ts` currently re-export the Russian dictionary — they are wired into the architecture (same shape, same `getDictionary(locale)` lookup, a `useDictionary()`/`useLocale()` context) but **not yet translated**, per the brief ("реализовать полностью RU" first). Adding real translations is then just filling in those three files; no component changes are needed. Locale-prefixed routing (`/en/...`) was intentionally not built yet, since only one locale renders today — that's the next step when translations exist.
+The site is trilingual: **English (default), Armenian, Russian** — in that order in the language switcher (`src/components/layout/LanguageSwitcher.tsx`, in the header and mobile menu). `src/i18n/config.ts` declares the three locales; `src/i18n/dictionaries/{en,hy,ru}.ts` each hold a full, independently-written translation of every UI-chrome string (nav, hero, wizard, booking, FAQ headings, legal-page copy, etc.), typed via the `Dictionary` type (English is the base; `Dictionary = typeof en`'s shape, values are `string` so locales can diverge freely).
 
-Tutor bios, testimonials and FAQ content live in `src/data/*.ts` as structured records rather than the dictionary, since they're content, not UI chrome.
+**Switching is client-side only, with no per-locale routing** (there is no `/en`, `/hy`, `/ru` in the URL). `I18nProvider` (`src/i18n/provider.tsx`) renders the server-sent `defaultLocale` (English) on first paint, then on mount checks `localStorage` for a saved preference and swaps to it — so repeat visitors see one brief re-render into their saved language rather than a clean SSR match. Building real locale-prefixed routing would remove that flash but is a materially bigger change than this client-side switcher; the trade-off is intentional given the scope of this build. SEO metadata (`<html lang>`, OpenGraph, JSON-LD) reflects the English default only, for the same reason — crawlers won't see the Armenian or Russian text.
 
-Known limitation: Playfair Display/Inter (the two loaded fonts) don't cover Armenian or Georgian scripts, so `hy`/`ka` copy will fall back to the browser's default serif/sans until a script-appropriate font is added for those locales.
+**Content localization** (`src/data/{tutors,subjects,wizard,faq}.ts`) follows an overlay pattern: the base arrays are the English/Russian source data (mixed — see each file), and a `translations` map keyed by locale + a stable id (tutor `slug`, subject `slug`, wizard option `id`) supplies the other locales. Each file exports a `localize*()` function (`localizeTutor`, `localizeTutors`, `localizeSubjects`, `localizeWizardOptions`, `localizeFaq`) that consuming components call with the active locale from `useLocale()`. **Testimonials and tutor reviews are deliberately left untranslated** in every locale — they're written as quotes from real people in whatever language they actually used, the same way a review platform doesn't auto-translate reviews by default; only the section chrome around them (headings, labels) is localized.
+
+Known limitation: Playfair Display/Inter (the two loaded fonts) don't cover the Armenian script, so Armenian copy renders in the browser's fallback serif/sans rather than the brand typeface. The Armenian translations themselves are LLM-drafted, not reviewed by a native speaker — treat them as a solid first draft, not final copy, especially the question-particle (՞) placement and any idiom-heavy sentences.
 
 ## Booking / matching architecture
 
@@ -41,10 +43,11 @@ Known limitation: Playfair Display/Inter (the two loaded fonts) don't cover Arme
 ## Known gaps — read before treating this as launch-ready
 
 - **Stats are placeholders.** `siteConfig.stats` (students/tutors/subjects/rating) are intentionally `"XX+"`/`"X.X"` placeholders, not real numbers — replace them with verified figures before launch.
-- **Tutors, reviews and testimonials are demo data**, per the brief. Six tutor profiles use real supplied photos (five tutors + the founder in the Hero); the two testimonial-author avatars remain initials placeholders since no photos exist for those personas.
+- **Tutors, reviews and testimonials are demo data**, per the brief. All six tutor profiles use real supplied photos, including the founder (Marianna Hayrapetyan), who is herself the English tutor rather than a separate decorative face; homepage-testimonial authors remain initials placeholders since no photos exist for those personas.
 - **No backend.** Booking submissions, the tutor-matching wizard, and tutor data are all local/in-memory. Nothing is persisted or sent anywhere.
-- **hy/en/ka copy is not translated** (see i18n section above).
-- **Legal pages are placeholders.** `/privacy` and `/terms` say so explicitly in their own copy.
+- **Armenian translations are LLM-drafted, not native-reviewed** (see i18n section above) — get a native speaker to review before launch.
+- **No per-locale routing/SEO.** Language switching is client-side only; search engines and social previews only ever see the English version. See i18n section above.
+- **Legal pages are placeholders.** `/privacy` and `/terms` say so explicitly in their own copy (translated into all three locales, but still placeholder legal text).
 - **Lighthouse was not run in this environment**; no performance/accessibility scores are claimed. Validate with `npm run build && npm run start` plus your own Lighthouse pass before relying on any number.
 
 ## Animation notes

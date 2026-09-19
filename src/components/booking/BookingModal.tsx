@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Check } from "lucide-react";
 import { useBookingModal } from "./BookingModalContext";
-import { useDictionary } from "@/i18n/provider";
-import { subjects } from "@/data/subjects";
-import { wizardGoals, wizardTimes } from "@/data/wizard";
+import { useDictionary, useLocale } from "@/i18n/provider";
+import { localizeSubjects } from "@/data/subjects";
+import { localizeWizardOptions } from "@/data/wizard";
 import { submitBookingRequest, type BookingPayload } from "@/lib/booking";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +26,9 @@ const emptyForm: BookingPayload = {
 export function BookingModal() {
   const { isOpen, prefill, close } = useBookingModal();
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const subjects = localizeSubjects(locale);
+  const { goals: wizardGoals, times: wizardTimes } = localizeWizardOptions(locale);
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<BookingPayload>(emptyForm);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");

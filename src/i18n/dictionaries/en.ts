@@ -1,6 +1,175 @@
-import ru, { type Dictionary } from "./ru";
+import type { Dictionary } from "./ru";
 
-// TODO: full English translation. See hy.ts for the same note.
-const en: Dictionary = ru;
+const en: Dictionary = {
+  meta: {
+    title: "Marianna Hayrapetyan Tutoring Center — online tutors",
+    description:
+      "We match a tutor to your goal, level and personality. Personal online lessons in English, Math, Russian, Armenian and Georgian.",
+  },
+  splash: {
+    eyebrow: "Tutoring Center",
+  },
+  nav: {
+    tutors: "Tutors",
+    subjects: "Subjects",
+    howItWorks: "How it works",
+    testimonials: "Reviews",
+    faq: "FAQ",
+    cta: "Trial lesson",
+  },
+  hero: {
+    eyebrow: "Online tutoring center",
+    headlineLine1: "Let's find a tutor",
+    headlineLine2: "who actually works for you.",
+    subheadline: "Personal online lessons built for real results.",
+    description:
+      "We match a tutor to your goal, level, personality and schedule.",
+    ctaPrimary: "Find a tutor",
+    ctaSecondary: "Trial lesson",
+  },
+  wizard: {
+    eyebrow: "Tutor matching",
+    title: "Who are you looking for?",
+    stepLabel: "Step",
+    step1Title: "Subject",
+    step2Title: "Who's learning",
+    step3Title: "Goal",
+    step4Title: "Convenient time",
+    back: "Back",
+    next: "Next",
+    submit: "Show tutors",
+  },
+  tutors: {
+    eyebrow: "Tutors",
+    title: "Tutors people choose for a reason",
+    detailsCta: "Learn more",
+    trialCta: "Trial lesson",
+    experienceLabel: "years of experience",
+    reviewsLabel: "reviews",
+    viewAll: "All tutors",
+  },
+  tutorProfile: {
+    aboutTitle: "About the tutor",
+    methodologyTitle: "Methodology",
+    suitableForTitle: "Who it's for",
+    educationTitle: "Education",
+    certificatesTitle: "Certificates",
+    videoTitle: "Video introduction",
+    videoComingSoon: "Video coming soon",
+    reviewsTitle: "Reviews",
+    scheduleTitle: "Schedule",
+    scheduleText: "The exact schedule is arranged individually with the tutor after you request a trial lesson.",
+    perLesson: "lesson",
+    durationOnline: "60 minutes, online",
+  },
+  subjects: {
+    eyebrow: "Subjects",
+    title: "Learn what actually matters",
+    tutorsAvailable: "tutors",
+  },
+  howItWorks: {
+    eyebrow: "How it works",
+    title: "From goal to result",
+  },
+  why: {
+    eyebrow: "Why Marianna Hayrapetyan",
+    title: "Not just lessons. A personal learning path.",
+  },
+  classExperience: {
+    eyebrow: "Lesson format",
+    title: "Here's what a lesson looks like",
+    teacher: "Tutor",
+    student: "Student",
+    materials: "Lesson materials",
+    notes: "Notes",
+    homework: "Homework",
+    progress: "Progress",
+    materialsExample: "Present Perfect — handout, lesson 12",
+    notesExample: "“Good grasp of Present Perfect vs Past Simple — let's reinforce it with practice”",
+    homeworkItem1: "Exercises 4–6, page 32",
+    homeworkItem2: "10 new words on the topic",
+    progressExample: "Topic “Present Perfect” — 68%",
+  },
+  results: {
+    eyebrow: "Results",
+    title: "Progress you can actually see",
+    students: "students",
+    tutorsStat: "tutors",
+    subjectsStat: "subjects",
+    rating: "rating",
+    placeholderNote: "These figures are placeholders and will be replaced with real data before launch.",
+  },
+  testimonials: {
+    eyebrow: "Reviews",
+    title: "What students and parents say",
+  },
+  trial: {
+    title: "Start with a single lesson.",
+    description:
+      "Meet your tutor, share your goal, and see whether the format actually works for you.",
+    cta: "Book a trial lesson",
+  },
+  faq: {
+    eyebrow: "Questions & answers",
+    title: "Frequently asked questions",
+  },
+  final: {
+    headlineLine1: "Your tutor",
+    headlineLine2: "might be closer",
+    headlineLine3: "than you think.",
+    cta: "Find a tutor",
+  },
+  footer: {
+    navTitle: "Navigation",
+    contactsTitle: "Contact",
+    followTitle: "Follow us",
+    privacy: "Privacy Policy",
+    terms: "Terms of Use",
+    rights: "All rights reserved.",
+  },
+  booking: {
+    title: "Trial lesson",
+    step1Title: "Tell us about yourself",
+    nameLabel: "Name",
+    namePlaceholder: "How should we address you",
+    ageLabel: "Age",
+    agePlaceholder: "Student's age",
+    step2Title: "Subject and goal",
+    subjectLabel: "Subject",
+    goalLabel: "Goal",
+    step3Title: "Level and time",
+    levelLabel: "Level",
+    levelPlaceholder: "E.g. beginner",
+    timeLabel: "Convenient time",
+    step4Title: "Contact details",
+    phoneLabel: "Phone / WhatsApp",
+    phonePlaceholder: "+1 999 000 0000",
+    commentLabel: "Comment",
+    commentPlaceholder: "Tell us more about what you need (optional)",
+    back: "Back",
+    next: "Next",
+    submit: "Send request",
+    submitting: "Sending…",
+    successTitle: "Request sent",
+    successText: "We'll get in touch shortly to confirm your trial lesson.",
+    close: "Close",
+    progress: "of",
+  },
+  common: {
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+  legal: {
+    privacyP1:
+      "Marianna Hayrapetyan Tutoring Center processes personal data submitted through the site's forms (name, student's age, contact details) solely to match a tutor and arrange a trial lesson.",
+    privacyP2Before:
+      "Data is not shared with third parties except where necessary to provide the educational service. You can request deletion of your data by writing to",
+    privacyP3: "This page is a placeholder and should be replaced with the full privacy policy text before the site goes into production.",
+    termsP1:
+      "By using the Marianna Hayrapetyan Tutoring Center website, you agree that its content is informational and that booking a trial lesson does not create any obligation until confirmed by the tutor.",
+    termsP2: "Lesson pricing and scheduling are arranged individually after the trial lesson.",
+    termsP3: "This page is a placeholder and should be replaced with the full terms of use before the site goes into production.",
+  },
+};
 
 export default en;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/i18n/provider";
-import { getDictionary, defaultLocale } from "@/i18n";
+import { defaultLocale } from "@/i18n";
 import { siteConfig } from "@/config/site";
 import { SplashScreen } from "@/components/splash/SplashScreen";
 import { IntroProvider } from "@/components/splash/IntroProvider";
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "ru_RU",
+    locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: siteConfig.name,
@@ -53,15 +53,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const dict = getDictionary(defaultLocale);
-
   return (
     <html
       lang={defaultLocale}
       className={`${playfair.variable} ${inter.variable}`}
     >
       <body className="min-h-full flex flex-col bg-cream text-espresso antialiased">
-        <I18nProvider locale={defaultLocale} dict={dict}>
+        <I18nProvider initialLocale={defaultLocale}>
           <IntroProvider>
             <BookingModalProvider>
               <TutorFilterProvider>

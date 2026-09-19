@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { LogoMark } from "@/components/brand/Logo";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { useDictionary } from "@/i18n/provider";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
@@ -69,7 +70,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-5 lg:flex">
+          <LanguageSwitcher />
           <MagneticButton onClick={() => open()} variant="primary" className="px-6 py-2.5 text-xs">
             {dict.nav.cta}
           </MagneticButton>
@@ -103,6 +105,9 @@ export function Header() {
                 {dict.nav[item.key]}
               </Link>
             ))}
+            <div className="flex items-center justify-center border-t border-espresso/10 py-3">
+              <LanguageSwitcher />
+            </div>
             <button
               onClick={() => {
                 setMenuOpen(false);

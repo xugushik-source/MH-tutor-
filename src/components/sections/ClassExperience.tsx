@@ -60,7 +60,7 @@ export function ClassExperience() {
                 <FileText className="h-4 w-4 text-burgundy" />
                 {dict.classExperience.materials}
               </p>
-              <p className="mt-2 text-sm text-espresso/50">Present Perfect — раздаточный материал, урок 12</p>
+              <p className="mt-2 text-sm text-espresso/50">{dict.classExperience.materialsExample}</p>
             </div>
           </div>
 
@@ -70,9 +70,7 @@ export function ClassExperience() {
                 <NotebookPen className="h-4 w-4 text-burgundy" />
                 {dict.classExperience.notes}
               </p>
-              <p className="mt-2 text-sm italic text-espresso/50">
-                «Хорошо освоил разницу Present Perfect / Past Simple, закрепим на практике»
-              </p>
+              <p className="mt-2 text-sm italic text-espresso/50">{dict.classExperience.notesExample}</p>
             </div>
 
             <div className="rounded-2xl border border-espresso/10 bg-cream-dim/50 p-5">
@@ -81,8 +79,8 @@ export function ClassExperience() {
                 {dict.classExperience.homework}
               </p>
               <ul className="mt-2 flex flex-col gap-1.5 text-sm text-espresso/55">
-                <li>— Упражнения 4–6, стр. 32</li>
-                <li>— 10 новых слов по теме</li>
+                <li>— {dict.classExperience.homeworkItem1}</li>
+                <li>— {dict.classExperience.homeworkItem2}</li>
               </ul>
             </div>
 
@@ -94,7 +92,7 @@ export function ClassExperience() {
               <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-espresso/10">
                 <div className="h-full w-[68%] rounded-full bg-burgundy" />
               </div>
-              <p className="mt-2 text-xs text-espresso/45">Тема «Present Perfect» — 68%</p>
+              <p className="mt-2 text-xs text-espresso/45">{dict.classExperience.progressExample}</p>
             </div>
           </div>
         </StaggerReveal>

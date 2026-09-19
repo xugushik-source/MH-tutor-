@@ -1,19 +1,22 @@
 "use client";
 
-import { tutors } from "@/data/tutors";
-import { subjects } from "@/data/subjects";
+import { localizeTutors } from "@/data/tutors";
+import { localizeSubjects } from "@/data/subjects";
 import { TutorCard } from "@/components/tutors/TutorCard";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { StaggerReveal } from "@/components/motion/StaggerReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 import { useTutorFilter } from "@/components/sections/TutorFilterContext";
 import { cn } from "@/lib/utils";
 
 export function Tutors() {
   const dict = useDictionary();
+  const { locale } = useLocale();
   const { filterSubject, setFilterSubject } = useTutorFilter();
 
+  const tutors = localizeTutors(locale);
+  const subjects = localizeSubjects(locale);
   const filtered = filterSubject ? tutors.filter((t) => t.subject === filterSubject) : tutors;
   const list = filtered.length > 0 ? filtered : tutors;
   const activeSubjectTitle = subjects.find((s) => s.slug === filterSubject)?.title;

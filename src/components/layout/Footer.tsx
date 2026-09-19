@@ -1,20 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import { Send, MessageCircle } from "lucide-react";
 import { InstagramGlyph } from "@/components/icons/InstagramGlyph";
 import { LogoMark } from "@/components/brand/Logo";
 import { siteConfig } from "@/config/site";
-import ruDict from "@/i18n/dictionaries/ru";
-
-const navItems = [
-  { href: "/#tutors", label: ruDict.nav.tutors },
-  { href: "/#subjects", label: ruDict.nav.subjects },
-  { href: "/#how-it-works", label: ruDict.nav.howItWorks },
-  { href: "/#testimonials", label: ruDict.nav.testimonials },
-  { href: "/#faq", label: ruDict.nav.faq },
-];
+import { useDictionary } from "@/i18n/provider";
 
 export function Footer() {
+  const dict = useDictionary();
   const year = new Date().getFullYear();
+
+  const navItems = [
+    { href: "/#tutors", label: dict.nav.tutors },
+    { href: "/#subjects", label: dict.nav.subjects },
+    { href: "/#how-it-works", label: dict.nav.howItWorks },
+    { href: "/#testimonials", label: dict.nav.testimonials },
+    { href: "/#faq", label: dict.nav.faq },
+  ];
 
   return (
     <footer className="relative overflow-hidden bg-espresso pb-20 text-cream lg:pb-0">
@@ -33,7 +36,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
-                {ruDict.footer.navTitle}
+                {dict.footer.navTitle}
               </span>
               {navItems.map((item) => (
                 <Link
@@ -48,7 +51,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
-                {ruDict.footer.contactsTitle}
+                {dict.footer.contactsTitle}
               </span>
               <a
                 href={`mailto:${siteConfig.contacts.email}`}
@@ -66,7 +69,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
-                {ruDict.footer.followTitle}
+                {dict.footer.followTitle}
               </span>
               <div className="flex items-center gap-3">
                 <SocialIcon href={siteConfig.contacts.instagram} label="Instagram">
@@ -85,14 +88,14 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-cream/10 pt-6 text-xs text-cream/40 sm:flex-row sm:items-center">
           <span>
-            © {year} {siteConfig.name}. {ruDict.footer.rights}
+            © {year} {siteConfig.name}. {dict.footer.rights}
           </span>
           <div className="flex items-center gap-5">
             <Link href="/privacy" className="transition-colors hover:text-champagne">
-              {ruDict.footer.privacy}
+              {dict.footer.privacy}
             </Link>
             <Link href="/terms" className="transition-colors hover:text-champagne">
-              {ruDict.footer.terms}
+              {dict.footer.terms}
             </Link>
           </div>
         </div>

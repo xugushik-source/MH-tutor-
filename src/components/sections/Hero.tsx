@@ -186,7 +186,9 @@ export function Hero() {
             </div>
             <div className="leading-tight">
               <p className="font-display text-lg text-espresso">{siteConfig.stats.rating}</p>
-              <p className="text-xs text-espresso/55">{siteConfig.stats.students} учеников</p>
+              <p className="text-xs text-espresso/55">
+                {siteConfig.stats.students} {dict.results.students}
+              </p>
             </div>
           </Reveal>
         </div>

@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqItems } from "@/data/faq";
+import { localizeFaq } from "@/data/faq";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 import { cn } from "@/lib/utils";
 
 export function Faq() {
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const faqItems = localizeFaq(locale);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (

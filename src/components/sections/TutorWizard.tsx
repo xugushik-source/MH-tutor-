@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { subjects } from "@/data/subjects";
-import { wizardAudiences, wizardGoals, wizardTimes, initialWizardState, type WizardState } from "@/data/wizard";
+import { localizeSubjects } from "@/data/subjects";
+import { localizeWizardOptions, initialWizardState, type WizardState } from "@/data/wizard";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 import { useTutorFilter } from "@/components/sections/TutorFilterContext";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +39,9 @@ function OptionCard({
 
 export function TutorWizard() {
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const subjects = localizeSubjects(locale);
+  const { audiences: wizardAudiences, goals: wizardGoals, times: wizardTimes } = localizeWizardOptions(locale);
   const { setFilterSubject } = useTutorFilter();
   const [step, setStep] = useState(1);
   const [state, setState] = useState<WizardState>(initialWizardState);

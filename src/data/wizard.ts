@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export const wizardAudiences = [
   { id: "child", label: "Ребёнок" },
   { id: "teen", label: "Подросток" },
@@ -37,3 +39,43 @@ export const initialWizardState: WizardState = {
   goal: null,
   time: null,
 };
+
+const audienceLabels: Record<Exclude<Locale, "ru">, Record<WizardAudienceId, string>> = {
+  en: { child: "Child", teen: "Teenager", adult: "Adult" },
+  hy: { child: "Երեխա", teen: "Դեռահաս", adult: "Մեծահասակ" },
+};
+
+const goalLabels: Record<Exclude<Locale, "ru">, Record<WizardGoalId, string>> = {
+  en: {
+    grades: "Improve grades",
+    exam: "Prepare for an exam",
+    speaking: "Conversational skills",
+    scratch: "Start from scratch",
+    admission: "University admission",
+    custom: "A specific goal",
+  },
+  hy: {
+    grades: "Բարելավել գնահատականները",
+    exam: "Նախապատրաստվել քննությանը",
+    speaking: "Խոսակցական լեզու",
+    scratch: "Սկսել զրոյից",
+    admission: "Ընդունելություն",
+    custom: "Անհատական նպատակ",
+  },
+};
+
+const timeLabels: Record<Exclude<Locale, "ru">, Record<WizardTimeId, string>> = {
+  en: { morning: "Morning", afternoon: "Afternoon", evening: "Evening", flexible: "Flexible" },
+  hy: { morning: "Առավոտ", afternoon: "Ցերեկ", evening: "Երեկո", flexible: "Ճկուն" },
+};
+
+export function localizeWizardOptions(locale: Locale) {
+  if (locale === "ru") {
+    return { audiences: wizardAudiences, goals: wizardGoals, times: wizardTimes };
+  }
+  return {
+    audiences: wizardAudiences.map((a) => ({ ...a, label: audienceLabels[locale][a.id] })),
+    goals: wizardGoals.map((g) => ({ ...g, label: goalLabels[locale][g.id] })),
+    times: wizardTimes.map((t) => ({ ...t, label: timeLabels[locale][t.id] })),
+  };
+}

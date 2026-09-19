@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config/site";
-import { faqItems } from "@/data/faq";
+import { localizeFaq } from "@/data/faq";
+import { defaultLocale } from "@/i18n/config";
 
 export function buildOrganizationSchema() {
   return {
@@ -18,7 +19,7 @@ export function buildFaqSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
+    mainEntity: localizeFaq(defaultLocale).map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

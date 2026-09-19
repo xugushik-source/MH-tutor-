@@ -2,10 +2,10 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { subjects, type Subject } from "@/data/subjects";
+import { localizeSubjects, type Subject } from "@/data/subjects";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 import { useTutorFilter } from "@/components/sections/TutorFilterContext";
 import { useRevealInView } from "@/lib/useRevealInView";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,8 @@ const item: Variants = {
 
 export function Subjects() {
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const subjects = localizeSubjects(locale);
   const { setFilterSubject } = useTutorFilter();
   const { ref: gridRef, inView } = useRevealInView<HTMLDivElement>();
 

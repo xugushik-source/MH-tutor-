@@ -4,9 +4,11 @@ import { Star, Clock, Globe } from "lucide-react";
 import type { Tutor } from "@/data/tutors";
 import { TutorAvatar } from "@/components/tutors/TutorAvatar";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
+import { useDictionary } from "@/i18n/provider";
 
 export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
   const { open } = useBookingModal();
+  const dict = useDictionary();
 
   return (
     <div className="lg:sticky lg:top-28">
@@ -19,20 +21,20 @@ export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
             <p className="font-display text-lg text-espresso">{tutor.name}</p>
             <p className="flex items-center gap-1 text-xs text-espresso/55">
               <Star className="h-3.5 w-3.5 fill-champagne text-champagne" />
-              {tutor.rating.toFixed(1)} · {tutor.reviewsCount} отзывов
+              {tutor.rating.toFixed(1)} · {tutor.reviewsCount} {dict.tutors.reviewsLabel}
             </p>
           </div>
         </div>
 
         <div className="mt-5 flex items-baseline gap-1.5 border-t border-espresso/10 pt-5">
           <span className="font-display text-3xl text-espresso">${tutor.priceFrom}</span>
-          <span className="text-sm text-espresso/50">/ занятие</span>
+          <span className="text-sm text-espresso/50">/ {dict.tutorProfile.perLesson}</span>
         </div>
 
         <div className="mt-4 flex flex-col gap-2 text-sm text-espresso/60">
           <span className="flex items-center gap-2">
             <Clock className="h-4 w-4 text-burgundy" />
-            60 минут, онлайн
+            {dict.tutorProfile.durationOnline}
           </span>
           <span className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-burgundy" />
@@ -44,7 +46,7 @@ export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
           onClick={() => open({ subject: tutor.subject })}
           className="mt-6 w-full rounded-full bg-burgundy px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-burgundy-deep"
         >
-          Записаться на пробное занятие
+          {dict.trial.cta}
         </button>
       </div>
     </div>

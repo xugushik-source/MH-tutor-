@@ -35,9 +35,7 @@ export function Results() {
           ))}
         </StaggerReveal>
 
-        <p className="mt-10 text-center text-xs text-cream/30">
-          Показатели — плейсхолдеры и будут заменены на реальные данные перед запуском.
-        </p>
+        <p className="mt-10 text-center text-xs text-cream/30">{dict.results.placeholderNote}</p>
       </div>
     </section>
   );

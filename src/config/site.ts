@@ -6,9 +6,9 @@ export const siteConfig = {
   tagline: "Tutoring Center",
   url: "https://mh-tutoring.example",
   description:
-    "Персональные онлайн-занятия с репетиторами, которых отбирают в центр Marianna Hayrapetyan. Подбор преподавателя под цель, уровень и расписание ученика.",
-  locale: "ru" as const,
-  supportedLocales: ["ru", "hy", "ka", "en"] as const,
+    "Personal online lessons with tutors hand-picked for the Marianna Hayrapetyan center. We match a tutor to your goal, level and schedule.",
+  locale: "en" as const,
+  supportedLocales: ["en", "hy", "ru"] as const,
   contacts: {
     whatsapp: "+374000000000",
     whatsappLink: "https://wa.me/374000000000",
