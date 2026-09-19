@@ -95,6 +95,20 @@ body {
   }
 }
 
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-content[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > div {
+  overflow: hidden;
+}
+
 .input {
   border-radius: 0.9rem;
   border: 1px solid color-mix(in srgb, var(--color-espresso) 15%, transparent);

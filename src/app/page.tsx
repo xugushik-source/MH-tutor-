@@ -6,6 +6,10 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { WhyMH } from "@/components/sections/WhyMH";
 import { ClassExperience } from "@/components/sections/ClassExperience";
 import { Results } from "@/components/sections/Results";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { TrialCta } from "@/components/sections/TrialCta";
+import { Faq } from "@/components/sections/Faq";
+import { FinalScreen } from "@/components/sections/FinalScreen";
 
 export default function Home() {
   return (
@@ -18,6 +22,10 @@ export default function Home() {
       <WhyMH />
       <ClassExperience />
       <Results />
+      <Testimonials />
+      <TrialCta />
+      <Faq />
+      <FinalScreen />
     </>
   );
 }
