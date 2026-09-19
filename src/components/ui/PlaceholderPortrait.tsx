@@ -12,6 +12,7 @@ interface PlaceholderPortraitProps {
   initial: string;
   tone?: Tone;
   className?: string;
+  textClassName?: string;
 }
 
 /**
@@ -21,7 +22,12 @@ interface PlaceholderPortraitProps {
  * Playfair Display. Swap for next/image once real photography exists —
  * ImageReveal's mask/scale treatment wraps either the same way.
  */
-export function PlaceholderPortrait({ initial, tone = "burgundy", className }: PlaceholderPortraitProps) {
+export function PlaceholderPortrait({
+  initial,
+  tone = "burgundy",
+  className,
+  textClassName,
+}: PlaceholderPortraitProps) {
   return (
     <div
       className={cn(
@@ -31,7 +37,12 @@ export function PlaceholderPortrait({ initial, tone = "burgundy", className }: P
       )}
     >
       <div className="absolute inset-0 opacity-[0.07] mix-blend-overlay [background-image:radial-gradient(circle_at_30%_20%,#fff,transparent_60%)]" />
-      <span className="font-display text-[3.2rem] leading-none text-cream/90 select-none">
+      <span
+        className={cn(
+          "font-display text-[3.2rem] leading-none text-cream/90 select-none",
+          textClassName,
+        )}
+      >
         {initial}
       </span>
     </div>

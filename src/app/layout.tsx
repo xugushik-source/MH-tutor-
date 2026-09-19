@@ -10,6 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BookingModalProvider } from "@/components/booking/BookingModalContext";
 import { BookingModal } from "@/components/booking/BookingModal";
+import { TutorFilterProvider } from "@/components/sections/TutorFilterContext";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 
 const playfair = Playfair_Display({
@@ -66,12 +67,14 @@ export default function RootLayout({
         <I18nProvider locale={defaultLocale} dict={dict}>
           <IntroProvider>
             <BookingModalProvider>
-              <SplashScreen />
-              <Header />
-              <main className="flex-1 pb-20 lg:pb-0">{children}</main>
-              <Footer />
-              <MobileStickyCta />
-              <BookingModal />
+              <TutorFilterProvider>
+                <SplashScreen />
+                <Header />
+                <main className="flex-1 pb-20 lg:pb-0">{children}</main>
+                <Footer />
+                <MobileStickyCta />
+                <BookingModal />
+              </TutorFilterProvider>
             </BookingModalProvider>
           </IntroProvider>
         </I18nProvider>
