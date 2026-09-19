@@ -15,7 +15,7 @@ export function TutorCard({ tutor }: { tutor: Tutor }) {
     <div className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-espresso/10 bg-cream transition-shadow duration-300 hover:shadow-xl hover:shadow-espresso/10">
       <TutorPortraitReveal
         tutor={tutor}
-        className="aspect-[4/3] [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-105"
+        className="aspect-[4/5] [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-105"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
       />
 
