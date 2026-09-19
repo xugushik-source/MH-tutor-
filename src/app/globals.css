@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm Ivory / Cream */
+  --color-cream: #f7f1e6;
+  --color-cream-dim: #efe6d3;
+  --color-cream-line: #e2d5b8;
+
+  /* Deep Burgundy / Wine */
+  --color-burgundy: #5c1a2e;
+  --color-burgundy-deep: #3c1120;
+  --color-burgundy-soft: #7a2c42;
+
+  /* Espresso / Near Black */
+  --color-espresso: #221510;
+  --color-espresso-soft: #35241d;
+
+  /* Champagne / Warm Gold */
+  --color-champagne: #c9a876;
+  --color-champagne-soft: #e2cda3;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-espresso);
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-dim: var(--color-cream-dim);
+  --color-cream-line: var(--color-cream-line);
+  --color-burgundy: var(--color-burgundy);
+  --color-burgundy-deep: var(--color-burgundy-deep);
+  --color-burgundy-soft: var(--color-burgundy-soft);
+  --color-espresso: var(--color-espresso);
+  --color-espresso-soft: var(--color-espresso-soft);
+  --color-champagne: var(--color-champagne);
+  --color-champagne-soft: var(--color-champagne-soft);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+
+  --animate-fade-in: fade-in 0.6s ease forwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.eyebrow {
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.reveal-mask {
+  overflow: hidden;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.input {
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-espresso) 15%, transparent);
+  background: color-mix(in srgb, var(--color-cream) 60%, white 0%);
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-espresso);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-burgundy);
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--color-espresso) 40%, transparent);
+}
+
+::selection {
+  background: var(--color-burgundy);
+  color: var(--color-cream);
+}
+
+/* Slim, brand-toned scrollbar for horizontal drag sections */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
