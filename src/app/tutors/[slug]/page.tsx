@@ -3,8 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Star, PlayCircle, GraduationCap, BadgeCheck, Quote } from "lucide-react";
 import { tutors, getTutorBySlug } from "@/data/tutors";
-import { ImageReveal } from "@/components/motion/ImageReveal";
-import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
+import { TutorPortraitReveal } from "@/components/tutors/TutorAvatar";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { TutorBookingCta } from "@/components/tutors/TutorBookingCta";
 import { siteConfig } from "@/config/site";
@@ -73,9 +72,12 @@ export default async function TutorPage({ params }: TutorPageProps) {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 pb-28 pt-8 sm:px-8 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-8">
           <SectionReveal className="flex flex-col gap-6 sm:flex-row sm:items-end">
-            <ImageReveal className="aspect-[4/5] w-full max-w-[220px] rounded-[1.75rem] shadow-xl shadow-espresso/15">
-              <PlaceholderPortrait initial={tutor.avatarInitial} tone={tutor.avatarTone} className="h-full w-full" />
-            </ImageReveal>
+            <TutorPortraitReveal
+              tutor={tutor}
+              className="aspect-[4/5] w-full max-w-[220px] rounded-[1.75rem] shadow-xl shadow-espresso/15"
+              sizes="220px"
+              priority
+            />
             <div>
               <p className="eyebrow text-burgundy">{tutor.subjectLabel}</p>
               <h1 className="mt-2 font-display text-4xl text-espresso sm:text-5xl">{tutor.name}</h1>

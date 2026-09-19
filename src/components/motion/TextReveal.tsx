@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useRevealInView } from "@/lib/useRevealInView";
 
 const container: Variants = {
   hidden: {},
@@ -40,12 +41,13 @@ export function TextReveal({
   as = "div",
 }: TextRevealProps) {
   const Tag = motion[as];
+  const { ref, inView } = useRevealInView<HTMLElement>();
 
   return (
     <Tag
+      ref={ref as React.Ref<HTMLDivElement>}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10% 0px" }}
+      animate={inView ? "visible" : "hidden"}
       variants={container}
       transition={{ delayChildren: delay }}
       className={className}

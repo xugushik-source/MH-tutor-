@@ -51,7 +51,7 @@ export function Header() {
         )}
       >
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setMenuOpen(false)}>
-          <LogoMark tone="burgundy" className="text-2xl" />
+          <LogoMark tone="burgundy" className="h-8" priority />
           <span className="hidden font-display text-sm text-espresso/80 sm:inline">
             Marianna Hayrapetyan
           </span>

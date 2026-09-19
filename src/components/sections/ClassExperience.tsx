@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Mic, Video, FileText, NotebookPen, ListChecks, TrendingUp } from "lucide-react";
 import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
 import { SectionReveal } from "@/components/motion/SectionReveal";
@@ -26,7 +27,13 @@ export function ClassExperience() {
           <div className="flex flex-col gap-4 lg:col-span-8">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="relative aspect-video overflow-hidden rounded-2xl">
-                <PlaceholderPortrait initial="ЛС" tone="espresso" className="h-full w-full" textClassName="text-2xl" />
+                <Image
+                  src="/portraits/levon.jpg"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
                 <span className="absolute bottom-3 left-3 rounded-full bg-espresso/70 px-3 py-1 text-xs text-cream">
                   {dict.classExperience.teacher}
                 </span>

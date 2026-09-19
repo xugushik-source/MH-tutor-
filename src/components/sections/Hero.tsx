@@ -1,13 +1,13 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Star } from "lucide-react";
 import { useIntro } from "@/components/splash/IntroProvider";
 import { useDictionary } from "@/i18n/provider";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -65,14 +65,18 @@ function HeroPortrait({
   show,
   delay,
   className,
-  initial,
-  tone,
+  src,
+  alt,
+  sizes,
+  priority,
 }: {
   show: boolean;
   delay: number;
   className?: string;
-  initial: string;
-  tone: "burgundy" | "espresso" | "champagne";
+  src: string;
+  alt: string;
+  sizes: string;
+  priority?: boolean;
 }) {
   return (
     <div className={cn("absolute overflow-hidden rounded-[1.75rem] shadow-2xl shadow-espresso/25", className)}>
@@ -86,9 +90,9 @@ function HeroPortrait({
           initial={{ scale: 1.16 }}
           animate={show ? { scale: 1 } : { scale: 1.16 }}
           transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay }}
-          className="h-full w-full"
+          className="relative h-full w-full"
         >
-          <PlaceholderPortrait initial={initial} tone={tone} className="h-full w-full" />
+          <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
         </motion.div>
       </motion.div>
     </div>
@@ -156,15 +160,18 @@ export function Hero() {
           <HeroPortrait
             show={introStarted}
             delay={0.5}
-            initial="АП"
-            tone="burgundy"
+            src="/portraits/founder.jpg"
+            alt="Marianna Hayrapetyan"
+            sizes="(max-width: 1024px) 60vw, 30vw"
+            priority
             className="right-0 top-0 aspect-[3/4] w-[64%]"
           />
           <HeroPortrait
             show={introStarted}
             delay={0.7}
-            initial="ЛС"
-            tone="espresso"
+            src="/portraits/anna.jpg"
+            alt=""
+            sizes="(max-width: 1024px) 50vw, 25vw"
             className="bottom-0 left-0 aspect-[4/5] w-[54%]"
           />
 

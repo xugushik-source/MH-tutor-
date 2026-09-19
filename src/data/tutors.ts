@@ -28,6 +28,8 @@ export interface Tutor {
   reviews: TutorReview[];
   avatarInitial: string;
   avatarTone: "burgundy" | "espresso" | "champagne";
+  /** Optional real photo (falls back to the initials placeholder when absent). */
+  photo?: string;
 }
 
 export const tutors: Tutor[] = [
@@ -69,6 +71,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "АП",
     avatarTone: "burgundy",
+    photo: "/portraits/anna.jpg",
   },
   {
     slug: "levon-sargsyan",
@@ -101,6 +104,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "ЛС",
     avatarTone: "espresso",
+    photo: "/portraits/levon.jpg",
   },
   {
     slug: "elena-vardanyan",
@@ -133,6 +137,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "ЕВ",
     avatarTone: "champagne",
+    photo: "/portraits/elena.jpg",
   },
   {
     slug: "gohar-manukyan",
@@ -165,6 +170,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "ГМ",
     avatarTone: "burgundy",
+    photo: "/portraits/gohar.jpg",
   },
   {
     slug: "nino-beridze",
@@ -197,6 +203,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "НБ",
     avatarTone: "espresso",
+    photo: "/portraits/nino.jpg",
   },
   {
     slug: "mariam-tovmasyan",
@@ -229,6 +236,7 @@ export const tutors: Tutor[] = [
     ],
     avatarInitial: "МТ",
     avatarTone: "champagne",
+    photo: "/portraits/mariam.jpg",
   },
 ];
 

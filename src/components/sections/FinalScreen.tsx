@@ -18,7 +18,7 @@ export function FinalScreen() {
       </span>
 
       <div className="relative z-10 flex flex-col items-center px-6">
-        <LogoMark tone="cream" className="text-4xl opacity-80" />
+        <LogoMark tone="cream" className="h-14 opacity-80" />
 
         <TextReveal
           as="h2"

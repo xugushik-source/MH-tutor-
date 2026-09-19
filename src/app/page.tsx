@@ -10,10 +10,22 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { TrialCta } from "@/components/sections/TrialCta";
 import { Faq } from "@/components/sections/Faq";
 import { FinalScreen } from "@/components/sections/FinalScreen";
+import { buildOrganizationSchema, buildFaqSchema } from "@/lib/schema";
 
 export default function Home() {
+  const organizationSchema = buildOrganizationSchema();
+  const faqSchema = buildFaqSchema();
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Hero />
       <TutorWizard />
       <Tutors />

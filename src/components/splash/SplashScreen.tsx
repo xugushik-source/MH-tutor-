@@ -32,7 +32,7 @@ export function SplashScreen() {
           transition={{ duration: (revealMs / 1000) * 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center gap-5 px-6"
         >
-          <LogoMark tone="cream" className="text-6xl sm:text-7xl" />
+          <LogoMark tone="cream" className="h-24 sm:h-32" priority />
           <div className="flex flex-col items-center gap-2">
             <span className="eyebrow text-cream/90 text-center">
               Marianna Hayrapetyan

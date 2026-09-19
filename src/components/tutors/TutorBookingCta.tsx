@@ -2,7 +2,7 @@
 
 import { Star, Clock, Globe } from "lucide-react";
 import type { Tutor } from "@/data/tutors";
-import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
+import { TutorAvatar } from "@/components/tutors/TutorAvatar";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
 
 export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
@@ -13,12 +13,7 @@ export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
       <div className="rounded-[1.75rem] border border-espresso/10 bg-cream p-6 shadow-xl shadow-espresso/10">
         <div className="flex items-center gap-3">
           <div className="h-14 w-14 overflow-hidden rounded-full">
-            <PlaceholderPortrait
-              initial={tutor.avatarInitial}
-              tone={tutor.avatarTone}
-              className="h-full w-full"
-              textClassName="text-lg"
-            />
+            <TutorAvatar tutor={tutor} className="h-full w-full" sizes="56px" textClassName="text-lg" />
           </div>
           <div>
             <p className="font-display text-lg text-espresso">{tutor.name}</p>

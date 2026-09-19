@@ -7,6 +7,7 @@ import { SectionReveal } from "@/components/motion/SectionReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
 import { useDictionary } from "@/i18n/provider";
 import { useTutorFilter } from "@/components/sections/TutorFilterContext";
+import { useRevealInView } from "@/lib/useRevealInView";
 import { cn } from "@/lib/utils";
 
 const spanClasses: Record<Subject["size"], string> = {
@@ -34,6 +35,7 @@ const item: Variants = {
 export function Subjects() {
   const dict = useDictionary();
   const { setFilterSubject } = useTutorFilter();
+  const { ref: gridRef, inView } = useRevealInView<HTMLDivElement>();
 
   function handleSelect(slug: string) {
     setFilterSubject(slug);
@@ -51,9 +53,9 @@ export function Subjects() {
         </SectionReveal>
 
         <motion.div
+          ref={gridRef}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
+          animate={inView ? "visible" : "hidden"}
           variants={container}
           className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-4 sm:auto-rows-[160px] lg:auto-rows-[180px]"
           style={{ gridAutoFlow: "dense" }}

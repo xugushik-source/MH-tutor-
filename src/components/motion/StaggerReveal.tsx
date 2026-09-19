@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Children, type ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { useRevealInView } from "@/lib/useRevealInView";
 
 const container: Variants = {
   hidden: {},
@@ -28,11 +28,13 @@ interface StaggerRevealProps {
 
 /** Reveals each direct child in sequence as the group scrolls into view. */
 export function StaggerReveal({ children, className, itemClassName }: StaggerRevealProps) {
+  const { ref, inView } = useRevealInView<HTMLDivElement>();
+
   return (
     <motion.div
+      ref={ref}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10%" }}
+      animate={inView ? "visible" : "hidden"}
       variants={container}
       className={className}
     >

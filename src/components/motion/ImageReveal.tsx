@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { useRevealInView } from "@/lib/useRevealInView";
 
 interface ImageRevealProps {
   children: ReactNode;
@@ -19,19 +20,19 @@ interface ImageRevealProps {
  * later needs no changes here.
  */
 export function ImageReveal({ children, className, delay = 0 }: ImageRevealProps) {
+  const { ref, inView } = useRevealInView<HTMLDivElement>();
+
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div ref={ref} className={cn("relative overflow-hidden", className)}>
       <motion.div
         initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-        whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
-        viewport={{ once: true, margin: "-10%" }}
+        animate={inView ? { clipPath: "inset(0% 0% 0% 0%)" } : undefined}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay }}
         className="h-full w-full"
       >
         <motion.div
           initial={{ scale: 1.12 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true, margin: "-10%" }}
+          animate={inView ? { scale: 1 } : undefined}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay }}
           className="h-full w-full"
         >

@@ -30,13 +30,19 @@ export function BookingModal() {
   const [form, setForm] = useState<BookingPayload>(emptyForm);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
-  useEffect(() => {
+  // Reset the flow whenever the modal transitions from closed to open.
+  // Adjusted during render (React's documented pattern for state that
+  // depends on a prop change) rather than in an effect, which would cause
+  // an extra render pass just to blank the form back out.
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
     if (isOpen) {
       setStep(1);
       setStatus("idle");
       setForm({ ...emptyForm, subject: prefill.subject ?? "", goal: prefill.goal ?? "" });
     }
-  }, [isOpen, prefill]);
+  }
 
   useEffect(() => {
     if (!isOpen) return;

@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { Star } from "lucide-react";
 import type { Tutor } from "@/data/tutors";
-import { ImageReveal } from "@/components/motion/ImageReveal";
-import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
+import { TutorPortraitReveal } from "@/components/tutors/TutorAvatar";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
 import { useDictionary } from "@/i18n/provider";
 
@@ -14,9 +13,11 @@ export function TutorCard({ tutor }: { tutor: Tutor }) {
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-espresso/10 bg-cream transition-shadow duration-300 hover:shadow-xl hover:shadow-espresso/10">
-      <ImageReveal className="aspect-[4/3]">
-        <PlaceholderPortrait initial={tutor.avatarInitial} tone={tutor.avatarTone} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />
-      </ImageReveal>
+      <TutorPortraitReveal
+        tutor={tutor}
+        className="aspect-[4/3] [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-105"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      />
 
       <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex items-start justify-between gap-3">

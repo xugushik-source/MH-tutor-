@@ -25,7 +25,7 @@ export function Footer() {
       <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-6 py-16 sm:px-8 lg:py-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="flex flex-col gap-3">
-            <LogoMark tone="cream" className="text-3xl" />
+            <LogoMark tone="cream" className="h-11" />
             <span className="eyebrow text-cream/70">Marianna Hayrapetyan</span>
             <span className="eyebrow text-cream/40">Tutoring Center</span>
           </div>

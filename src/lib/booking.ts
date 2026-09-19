@@ -29,7 +29,6 @@ export interface BookingPrefill {
 export async function submitBookingRequest(payload: BookingPayload): Promise<{ ok: true }> {
   await new Promise((resolve) => setTimeout(resolve, 900));
   if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line no-console
     console.info("[booking] demo submission (no backend wired up):", payload);
   }
   return { ok: true };
