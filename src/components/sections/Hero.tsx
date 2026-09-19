@@ -160,7 +160,7 @@ export function Hero() {
           <HeroPortrait
             show={introStarted}
             delay={0.5}
-            src="/portraits/founder.jpg"
+            src="/portraits/marianna.jpg"
             alt="Marianna Hayrapetyan"
             sizes="(max-width: 1024px) 60vw, 30vw"
             priority
@@ -169,7 +169,7 @@ export function Hero() {
           <HeroPortrait
             show={introStarted}
             delay={0.7}
-            src="/portraits/anna.jpg"
+            src="/portraits/elena.jpg"
             alt=""
             sizes="(max-width: 1024px) 50vw, 25vw"
             className="bottom-0 left-0 aspect-[4/5] w-[54%]"

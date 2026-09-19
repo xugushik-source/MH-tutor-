@@ -34,8 +34,8 @@ export interface Tutor {
 
 export const tutors: Tutor[] = [
   {
-    slug: "anna-petrosyan",
-    name: "Анна Петросян",
+    slug: "marianna-hayrapetyan",
+    name: "Марианна Айрапетян",
     subject: "english",
     subjectLabel: "Английский язык",
     specializations: ["Разговорный английский", "IELTS", "Подготовка к собеседованиям"],
@@ -45,10 +45,10 @@ export const tutors: Tutor[] = [
     reviewsCount: 132,
     priceFrom: 25,
     currency: "USD",
-    shortBio: "Помогаю заговорить на английском без страха ошибиться — уверенно и по делу.",
+    shortBio: "Основательница центра. Помогаю заговорить на английском без страха ошибиться — уверенно и по делу.",
     about: [
-      "Работаю с учениками, которым важен результат, а не просто «прохождение учебника».",
-      "За 8 лет практики вела и детей, и взрослых — от нуля до уровня C1.",
+      "Я основала этот центр, потому что сама 8 лет преподаю английский и знаю, чего не хватает большинству программ — персонального подхода.",
+      "Работаю с учениками, которым важен результат, а не просто «прохождение учебника»: вела и детей, и взрослых — от нуля до уровня C1.",
     ],
     methodology:
       "Коммуникативный подход: минимум теории, максимум живой практики. Каждое занятие — конкретная цель.",
@@ -69,9 +69,9 @@ export const tutors: Tutor[] = [
         text: "Very structured lessons, always clear homework and feedback.",
       },
     ],
-    avatarInitial: "АП",
+    avatarInitial: "МА",
     avatarTone: "burgundy",
-    photo: "/portraits/anna.jpg",
+    photo: "/portraits/marianna.jpg",
   },
   {
     slug: "levon-sargsyan",
