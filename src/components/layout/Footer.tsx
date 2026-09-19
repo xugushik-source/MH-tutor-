@@ -17,7 +17,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-espresso text-cream">
+    <footer className="relative overflow-hidden bg-espresso pb-20 text-cream lg:pb-0">
       <div className="pointer-events-none absolute -bottom-24 right-0 select-none font-display text-[16rem] font-semibold leading-none text-cream/5">
         MH
       </div>
