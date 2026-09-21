@@ -17,13 +17,16 @@ export const siteConfig = {
     telegram: "https://t.me/mh_tutoring",
     facebook: "https://facebook.com/mh.tutoring",
   },
-  // Placeholder metrics. Replace with verified figures before launch —
-  // do not present these as real numbers.
+  // Demo metrics for this showcase build — not real figures. Chosen to stay
+  // consistent with the rest of the demo data: 60 = sum of subjects.ts's
+  // per-subject tutorsCount, 4.9 ≈ the average of the six tutor ratings in
+  // data/tutors.ts, 8 = the number of subject tiles actually shown on the
+  // site. Replace with verified numbers before treating this as a real launch.
   stats: {
-    students: "XX+",
-    tutors: "XX",
-    subjects: "XX",
-    rating: "X.X",
+    students: "850+",
+    tutors: "60+",
+    subjects: "8",
+    rating: "4.9",
   },
 } as const;
 
