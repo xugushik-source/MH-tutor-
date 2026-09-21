@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 
-type Tone = "burgundy" | "espresso" | "champagne";
+type Tone = "forest" | "ink" | "gold";
 
 const toneClasses: Record<Tone, string> = {
-  burgundy: "bg-gradient-to-br from-burgundy-soft via-burgundy to-burgundy-deep",
-  espresso: "bg-gradient-to-br from-espresso-soft via-espresso to-[#150d0a]",
-  champagne: "bg-gradient-to-br from-champagne-soft via-champagne to-[#a9895c]",
+  forest: "bg-gradient-to-br from-forest-soft via-forest to-forest-deep",
+  ink: "bg-gradient-to-br from-ink-soft via-ink to-[#111814]",
+  gold: "bg-gradient-to-br from-gold-soft via-gold to-[#a9895c]",
 };
 
 interface PlaceholderPortraitProps {
@@ -24,7 +24,7 @@ interface PlaceholderPortraitProps {
  */
 export function PlaceholderPortrait({
   initial,
-  tone = "burgundy",
+  tone = "forest",
   className,
   textClassName,
 }: PlaceholderPortraitProps) {

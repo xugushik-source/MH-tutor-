@@ -17,7 +17,7 @@ export function SplashScreen() {
   return (
     <div className="fixed inset-0 z-[100]" aria-hidden="true">
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden bg-burgundy"
+        className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden bg-forest"
         initial={false}
         animate={phase === "revealing" ? { y: "-100%" } : { y: "0%" }}
         transition={{ duration: revealMs / 1000, ease: [0.76, 0, 0.24, 1] }}
@@ -45,7 +45,7 @@ export function SplashScreen() {
 
         <div className="absolute bottom-14 left-1/2 h-px w-40 -translate-x-1/2 overflow-hidden bg-cream/15">
           <motion.div
-            className="h-full bg-champagne"
+            className="h-full bg-gold"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             style={{ transformOrigin: "left" }}

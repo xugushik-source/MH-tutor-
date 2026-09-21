@@ -85,7 +85,7 @@ export function BookingModal() {
         <div className="fixed inset-0 z-[90] flex items-end justify-center sm:items-center">
           <motion.button
             aria-label={dict.booking.close}
-            className="absolute inset-0 bg-espresso/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -104,7 +104,7 @@ export function BookingModal() {
             <button
               onClick={close}
               aria-label={dict.booking.close}
-              className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-espresso/15 text-espresso transition-colors hover:border-espresso/40"
+              className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40"
             >
               <X className="h-4 w-4" />
             </button>
@@ -114,19 +114,19 @@ export function BookingModal() {
             ) : (
               <>
                 <div className="mb-6 pr-10">
-                  <span className="eyebrow text-burgundy">{dict.booking.title}</span>
+                  <span className="eyebrow text-forest">{dict.booking.title}</span>
                   <div className="mt-3 flex items-center gap-2">
                     {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
                       <div
                         key={i}
                         className={cn(
                           "h-1 flex-1 rounded-full transition-colors duration-300",
-                          i < step ? "bg-burgundy" : "bg-espresso/10",
+                          i < step ? "bg-forest" : "bg-ink/10",
                         )}
                       />
                     ))}
                   </div>
-                  <p className="mt-2 text-xs text-espresso/50">
+                  <p className="mt-2 text-xs text-ink/50">
                     {step} {dict.booking.progress} {TOTAL_STEPS}
                   </p>
                 </div>
@@ -142,7 +142,7 @@ export function BookingModal() {
                   >
                     {step === 1 && (
                       <>
-                        <h3 className="font-display text-xl text-espresso">
+                        <h3 className="font-display text-xl text-ink">
                           {dict.booking.step1Title}
                         </h3>
                         <Field label={dict.booking.nameLabel}>
@@ -167,7 +167,7 @@ export function BookingModal() {
 
                     {step === 2 && (
                       <>
-                        <h3 className="font-display text-xl text-espresso">
+                        <h3 className="font-display text-xl text-ink">
                           {dict.booking.step2Title}
                         </h3>
                         <Field label={dict.booking.subjectLabel}>
@@ -207,7 +207,7 @@ export function BookingModal() {
 
                     {step === 3 && (
                       <>
-                        <h3 className="font-display text-xl text-espresso">
+                        <h3 className="font-display text-xl text-ink">
                           {dict.booking.step3Title}
                         </h3>
                         <Field label={dict.booking.levelLabel}>
@@ -239,7 +239,7 @@ export function BookingModal() {
 
                     {step === 4 && (
                       <>
-                        <h3 className="font-display text-xl text-espresso">
+                        <h3 className="font-display text-xl text-ink">
                           {dict.booking.step4Title}
                         </h3>
                         <Field label={dict.booking.phoneLabel}>
@@ -268,7 +268,7 @@ export function BookingModal() {
                   <button
                     onClick={() => setStep((s) => Math.max(1, s - 1))}
                     className={cn(
-                      "text-sm font-medium text-espresso/60 transition-opacity hover:text-espresso",
+                      "text-sm font-medium text-ink/60 transition-opacity hover:text-ink",
                       step === 1 && "invisible",
                     )}
                   >
@@ -278,7 +278,7 @@ export function BookingModal() {
                     <button
                       onClick={() => canProceed && setStep((s) => s + 1)}
                       disabled={!canProceed}
-                      className="rounded-full bg-burgundy px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-burgundy-deep disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       {dict.booking.next}
                     </button>
@@ -286,7 +286,7 @@ export function BookingModal() {
                     <button
                       onClick={handleSubmit}
                       disabled={!canProceed || status === "submitting"}
-                      className="rounded-full bg-burgundy px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-burgundy-deep disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       {status === "submitting" ? dict.booking.submitting : dict.booking.submit}
                     </button>
@@ -304,7 +304,7 @@ export function BookingModal() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5 text-sm">
-      <span className="text-espresso/70">{label}</span>
+      <span className="text-ink/70">{label}</span>
       {children}
     </label>
   );
@@ -318,14 +318,14 @@ function SuccessScreen({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1, scale: 1 }}
       className="flex flex-col items-center gap-4 py-10 text-center"
     >
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-burgundy text-cream">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-forest text-cream">
         <Check className="h-7 w-7" />
       </div>
-      <h3 className="font-display text-2xl text-espresso">{dict.booking.successTitle}</h3>
-      <p className="max-w-xs text-sm text-espresso/60">{dict.booking.successText}</p>
+      <h3 className="font-display text-2xl text-ink">{dict.booking.successTitle}</h3>
+      <p className="max-w-xs text-sm text-ink/60">{dict.booking.successText}</p>
       <button
         onClick={onClose}
-        className="mt-2 rounded-full border border-espresso/20 px-6 py-3 text-sm font-medium text-espresso transition-colors hover:border-espresso/50"
+        className="mt-2 rounded-full border border-ink/20 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ink/50"
       >
         {dict.booking.close}
       </button>

@@ -9,7 +9,7 @@ export function FinalScreen() {
   const dict = useDictionary();
 
   return (
-    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-burgundy py-28 text-center text-cream">
+    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-forest py-28 text-center text-cream">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-display text-[52vw] font-semibold leading-none text-cream/[0.05] sm:text-[34vw]"

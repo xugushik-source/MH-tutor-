@@ -10,7 +10,7 @@ export function TrialCta() {
   const { open } = useBookingModal();
 
   return (
-    <section className="relative overflow-hidden bg-burgundy py-24 text-cream sm:py-32">
+    <section className="relative overflow-hidden bg-forest py-24 text-cream sm:py-32">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -left-[10%] top-1/2 -translate-y-1/2 select-none font-display text-[38vw] font-semibold leading-none text-cream/[0.06] sm:text-[24vw]"

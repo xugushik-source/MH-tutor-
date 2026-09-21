@@ -58,7 +58,7 @@ export default function RootLayout({
       lang={defaultLocale}
       className={`${playfair.variable} ${inter.variable}`}
     >
-      <body className="min-h-full flex flex-col bg-cream text-espresso antialiased">
+      <body className="min-h-full flex flex-col bg-cream text-ink antialiased">
         <I18nProvider initialLocale={defaultLocale}>
           <IntroProvider>
             <BookingModalProvider>

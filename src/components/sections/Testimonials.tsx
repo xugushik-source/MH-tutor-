@@ -39,10 +39,10 @@ export function Testimonials() {
     <section id="testimonials" className="bg-cream py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <SectionReveal className="max-w-xl">
-          <span className="eyebrow text-burgundy">
+          <span className="eyebrow text-forest">
             <LineReveal>{dict.testimonials.eyebrow}</LineReveal>
           </span>
-          <h2 className="mt-4 font-display text-4xl text-espresso sm:text-5xl">{dict.testimonials.title}</h2>
+          <h2 className="mt-4 font-display text-4xl text-ink sm:text-5xl">{dict.testimonials.title}</h2>
         </SectionReveal>
       </div>
 
@@ -60,20 +60,20 @@ export function Testimonials() {
             <div
               key={t.name}
               className={cn(
-                "flex shrink-0 flex-col justify-between gap-6 rounded-[1.75rem] border border-espresso/10 bg-cream-dim/40 p-7 select-none",
+                "flex shrink-0 flex-col justify-between gap-6 rounded-[1.75rem] border border-ink/10 bg-sage-soft/40 p-7 select-none",
                 sizeClasses[t.size],
               )}
               style={{ scrollSnapAlign: "start" }}
             >
-              <Quote className="h-6 w-6 text-champagne" />
-              <p className="text-base leading-relaxed text-espresso/75">{t.text}</p>
+              <Quote className="h-6 w-6 text-gold" />
+              <p className="text-base leading-relaxed text-ink/75">{t.text}</p>
               <div className="flex items-center gap-3">
                 <div className="h-11 w-11 overflow-hidden rounded-full">
-                  <PlaceholderPortrait initial={t.avatarInitial} tone="burgundy" textClassName="text-base" />
+                  <PlaceholderPortrait initial={t.avatarInitial} tone="forest" textClassName="text-base" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-espresso">{t.name}</p>
-                  <p className="text-xs text-espresso/50">
+                  <p className="text-sm font-medium text-ink">{t.name}</p>
+                  <p className="text-xs text-ink/50">
                     {t.subject} · {t.country}
                   </p>
                 </div>

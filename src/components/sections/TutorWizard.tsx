@@ -28,8 +28,8 @@ function OptionCard({
       className={cn(
         "rounded-2xl border px-5 py-4 text-left text-sm font-medium transition-all duration-300",
         selected
-          ? "border-burgundy bg-burgundy text-cream shadow-lg shadow-burgundy/20"
-          : "border-espresso/12 bg-cream text-espresso/80 hover:border-burgundy/40 hover:bg-burgundy/5",
+          ? "border-forest bg-forest text-cream shadow-lg shadow-forest/20"
+          : "border-ink/12 bg-cream text-ink/80 hover:border-forest/40 hover:bg-forest/5",
       )}
     >
       {label}
@@ -58,20 +58,20 @@ export function TutorWizard() {
     <section id="wizard" className="relative bg-cream-dim py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
         <SectionReveal className="text-center">
-          <span className="eyebrow text-burgundy">
+          <span className="eyebrow text-forest">
             <LineReveal>{dict.wizard.eyebrow}</LineReveal>
           </span>
-          <h2 className="mt-4 font-display text-4xl text-espresso sm:text-5xl">{dict.wizard.title}</h2>
+          <h2 className="mt-4 font-display text-4xl text-ink sm:text-5xl">{dict.wizard.title}</h2>
         </SectionReveal>
 
-        <SectionReveal delay={0.15} className="mt-14 rounded-[2rem] border border-espresso/10 bg-cream p-6 shadow-xl shadow-espresso/5 sm:p-10">
+        <SectionReveal delay={0.15} className="mt-14 rounded-[2rem] border border-ink/10 bg-cream p-6 shadow-xl shadow-ink/5 sm:p-10">
           <div className="mb-8 flex items-center gap-2">
             {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
               <div
                 key={i}
                 className={cn(
                   "h-1 flex-1 rounded-full transition-colors duration-300",
-                  i < step ? "bg-burgundy" : "bg-espresso/10",
+                  i < step ? "bg-forest" : "bg-ink/10",
                 )}
               />
             ))}
@@ -87,7 +87,7 @@ export function TutorWizard() {
             >
               {step === 1 && (
                 <>
-                  <h3 className="font-display text-2xl text-espresso">{dict.wizard.step1Title}</h3>
+                  <h3 className="font-display text-2xl text-ink">{dict.wizard.step1Title}</h3>
                   <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {subjects.map((s) => (
                       <OptionCard
@@ -103,7 +103,7 @@ export function TutorWizard() {
 
               {step === 2 && (
                 <>
-                  <h3 className="font-display text-2xl text-espresso">{dict.wizard.step2Title}</h3>
+                  <h3 className="font-display text-2xl text-ink">{dict.wizard.step2Title}</h3>
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {wizardAudiences.map((a) => (
                       <OptionCard
@@ -119,7 +119,7 @@ export function TutorWizard() {
 
               {step === 3 && (
                 <>
-                  <h3 className="font-display text-2xl text-espresso">{dict.wizard.step3Title}</h3>
+                  <h3 className="font-display text-2xl text-ink">{dict.wizard.step3Title}</h3>
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {wizardGoals.map((g) => (
                       <OptionCard
@@ -135,7 +135,7 @@ export function TutorWizard() {
 
               {step === 4 && (
                 <>
-                  <h3 className="font-display text-2xl text-espresso">{dict.wizard.step4Title}</h3>
+                  <h3 className="font-display text-2xl text-ink">{dict.wizard.step4Title}</h3>
                   <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {wizardTimes.map((t) => (
                       <OptionCard
@@ -155,7 +155,7 @@ export function TutorWizard() {
             <button
               onClick={() => setStep((s) => Math.max(1, s - 1))}
               className={cn(
-                "flex items-center gap-1.5 text-sm font-medium text-espresso/60 transition-opacity hover:text-espresso",
+                "flex items-center gap-1.5 text-sm font-medium text-ink/60 transition-opacity hover:text-ink",
                 step === 1 && "invisible",
               )}
             >
@@ -167,7 +167,7 @@ export function TutorWizard() {
               <button
                 onClick={() => stepValid && setStep((s) => s + 1)}
                 disabled={!stepValid}
-                className="flex items-center gap-1.5 rounded-full bg-burgundy px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-burgundy-deep disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex items-center gap-1.5 rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {dict.wizard.next}
                 <ChevronRight className="h-4 w-4" />
@@ -176,7 +176,7 @@ export function TutorWizard() {
               <button
                 onClick={handleSubmit}
                 disabled={!stepValid}
-                className="rounded-full bg-burgundy px-7 py-3 text-sm font-medium text-cream transition-colors hover:bg-burgundy-deep disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-full bg-forest px-7 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {dict.wizard.submit}
               </button>

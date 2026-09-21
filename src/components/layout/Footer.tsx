@@ -20,7 +20,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-espresso pb-20 text-cream lg:pb-0">
+    <footer className="relative overflow-hidden bg-forest pb-20 text-cream lg:pb-0">
       <div className="pointer-events-none absolute -bottom-24 right-0 select-none font-display text-[16rem] font-semibold leading-none text-cream/5">
         MH
       </div>
@@ -42,7 +42,7 @@ export function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-cream/75 transition-colors hover:text-champagne"
+                  className="text-sm text-cream/75 transition-colors hover:text-gold"
                 >
                   {item.label}
                 </Link>
@@ -55,13 +55,13 @@ export function Footer() {
               </span>
               <a
                 href={`mailto:${siteConfig.contacts.email}`}
-                className="text-sm text-cream/75 transition-colors hover:text-champagne"
+                className="text-sm text-cream/75 transition-colors hover:text-gold"
               >
                 {siteConfig.contacts.email}
               </a>
               <a
                 href={siteConfig.contacts.whatsappLink}
-                className="text-sm text-cream/75 transition-colors hover:text-champagne"
+                className="text-sm text-cream/75 transition-colors hover:text-gold"
               >
                 WhatsApp
               </a>
@@ -91,10 +91,10 @@ export function Footer() {
             © {year} {siteConfig.name}. {dict.footer.rights}
           </span>
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="transition-colors hover:text-champagne">
+            <Link href="/privacy" className="transition-colors hover:text-gold">
               {dict.footer.privacy}
             </Link>
-            <Link href="/terms" className="transition-colors hover:text-champagne">
+            <Link href="/terms" className="transition-colors hover:text-gold">
               {dict.footer.terms}
             </Link>
           </div>
@@ -119,7 +119,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/15 text-cream/75 transition-colors hover:border-champagne hover:text-champagne"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/15 text-cream/75 transition-colors hover:border-gold hover:text-gold"
     >
       {children}
     </a>

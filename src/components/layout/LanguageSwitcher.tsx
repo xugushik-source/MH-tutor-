@@ -22,12 +22,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             aria-pressed={locale === code}
             className={cn(
               "transition-colors",
-              locale === code ? "text-burgundy" : "text-espresso/40 hover:text-espresso/70",
+              locale === code ? "text-forest" : "text-ink/40 hover:text-ink/70",
             )}
           >
             {shortCodes[code]}
           </button>
-          {i < locales.length - 1 && <span className="text-espresso/20">/</span>}
+          {i < locales.length - 1 && <span className="text-ink/20">/</span>}
         </span>
       ))}
     </div>

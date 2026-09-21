@@ -47,13 +47,13 @@ export function Header() {
         className={cn(
           "mx-auto mt-0 flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8",
           scrolled
-            ? "mt-3 rounded-full border border-espresso/10 bg-cream/85 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-md sm:mx-4 sm:px-6"
+            ? "mt-3 rounded-full border border-ink/10 bg-cream/85 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-md sm:mx-4 sm:px-6"
             : "py-5",
         )}
       >
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setMenuOpen(false)}>
-          <LogoMark tone="burgundy" className="h-8" priority />
-          <span className="hidden font-display text-sm text-espresso/80 sm:inline">
+          <LogoMark tone="forest" className="h-8" priority />
+          <span className="hidden font-display text-sm text-ink/80 sm:inline">
             Marianna Hayrapetyan
           </span>
         </Link>
@@ -63,7 +63,7 @@ export function Header() {
             <Link
               key={item.key}
               href={item.href}
-              className="text-sm font-medium text-espresso/75 transition-colors hover:text-burgundy"
+              className="text-sm font-medium text-ink/75 transition-colors hover:text-forest"
             >
               {dict.nav[item.key]}
             </Link>
@@ -78,7 +78,7 @@ export function Header() {
         </div>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-espresso/15 text-espresso lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? dict.common.closeMenu : dict.common.openMenu}
         >
@@ -93,19 +93,19 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-4 mt-2 flex flex-col gap-1 rounded-3xl border border-espresso/10 bg-cream p-4 shadow-xl lg:hidden"
+            className="mx-4 mt-2 flex flex-col gap-1 rounded-3xl border border-ink/10 bg-cream p-4 shadow-xl lg:hidden"
           >
             {navItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium text-espresso/85 transition-colors hover:bg-espresso/5"
+                className="rounded-xl px-3 py-3 text-base font-medium text-ink/85 transition-colors hover:bg-ink/5"
               >
                 {dict.nav[item.key]}
               </Link>
             ))}
-            <div className="flex items-center justify-center border-t border-espresso/10 py-3">
+            <div className="flex items-center justify-center border-t border-ink/10 py-3">
               <LanguageSwitcher />
             </div>
             <button
@@ -113,7 +113,7 @@ export function Header() {
                 setMenuOpen(false);
                 open();
               }}
-              className="mt-2 rounded-full bg-burgundy px-5 py-3 text-sm font-medium text-cream"
+              className="mt-2 rounded-full bg-forest px-5 py-3 text-sm font-medium text-cream"
             >
               {dict.nav.cta}
             </button>

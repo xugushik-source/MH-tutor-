@@ -28,7 +28,7 @@ export interface Tutor {
   certificates: string[];
   reviews: TutorReview[];
   avatarInitial: string;
-  avatarTone: "burgundy" | "espresso" | "champagne";
+  avatarTone: "forest" | "ink" | "gold";
   /** Optional real photo (falls back to the initials placeholder when absent). */
   photo?: string;
 }
@@ -77,7 +77,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "МА",
-    avatarTone: "burgundy",
+    avatarTone: "forest",
     photo: "/portraits/marianna.jpg",
   },
   {
@@ -122,7 +122,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "ЛС",
-    avatarTone: "espresso",
+    avatarTone: "ink",
     photo: "/portraits/levon.jpg",
   },
   {
@@ -161,7 +161,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "ЕВ",
-    avatarTone: "champagne",
+    avatarTone: "gold",
     photo: "/portraits/elena.jpg",
   },
   {
@@ -200,7 +200,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "ГМ",
-    avatarTone: "burgundy",
+    avatarTone: "forest",
     photo: "/portraits/gohar.jpg",
   },
   {
@@ -239,7 +239,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "НБ",
-    avatarTone: "espresso",
+    avatarTone: "ink",
     photo: "/portraits/nino.jpg",
   },
   {
@@ -278,7 +278,7 @@ export const tutors: Tutor[] = [
       },
     ],
     avatarInitial: "МТ",
-    avatarTone: "champagne",
+    avatarTone: "gold",
     photo: "/portraits/mariam.jpg",
   },
 ];

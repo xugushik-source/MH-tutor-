@@ -38,10 +38,10 @@ export function HowItWorks() {
   }, []);
 
   return (
-    <section id="how-it-works" className="bg-espresso py-24 text-cream sm:py-32">
+    <section id="how-it-works" className="bg-forest py-24 text-cream sm:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <SectionReveal className="max-w-xl">
-          <span className="eyebrow text-champagne">
+          <span className="eyebrow text-gold">
             <LineReveal>{dict.howItWorks.eyebrow}</LineReveal>
           </span>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl">{dict.howItWorks.title}</h2>
@@ -58,7 +58,7 @@ export function HowItWorks() {
                   exit={{ opacity: 0, y: -24 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <span className="font-display text-8xl text-champagne/40">
+                  <span className="font-display text-8xl text-gold/40">
                     {processSteps[active].index}
                   </span>
                   <h3 className="mt-4 max-w-sm font-display text-3xl text-cream">
@@ -79,13 +79,13 @@ export function HowItWorks() {
                 }}
                 className={cn(
                   "flex min-h-[45vh] flex-col justify-center gap-3 border-l-2 pl-8 transition-colors duration-500 lg:min-h-[55vh]",
-                  active === i ? "border-champagne" : "border-cream/10",
+                  active === i ? "border-gold" : "border-cream/10",
                 )}
               >
                 <span
                   className={cn(
                     "font-display text-3xl transition-colors duration-500 lg:hidden",
-                    active === i ? "text-champagne" : "text-cream/30",
+                    active === i ? "text-gold" : "text-cream/30",
                   )}
                 >
                   {step.index}

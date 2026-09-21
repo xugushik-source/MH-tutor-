@@ -79,7 +79,7 @@ function HeroPortrait({
   priority?: boolean;
 }) {
   return (
-    <div className={cn("absolute overflow-hidden rounded-[1.75rem] shadow-2xl shadow-espresso/25", className)}>
+    <div className={cn("absolute overflow-hidden rounded-[1.75rem] shadow-2xl shadow-ink/25", className)}>
       <motion.div
         initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
         animate={show ? { clipPath: "inset(0% 0% 0% 0%)" } : { clipPath: "inset(100% 0% 0% 0%)" }}
@@ -116,7 +116,7 @@ export function Hero() {
         animate={introStarted ? "visible" : "hidden"}
         variants={watermarkVariants}
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[8vw] -top-[6vw] select-none font-display text-[42vw] font-semibold leading-none text-burgundy/[0.06] sm:text-[32vw] lg:-right-[4vw] lg:text-[26vw]"
+        className="pointer-events-none absolute -right-[8vw] -top-[6vw] select-none font-display text-[42vw] font-semibold leading-none text-forest/[0.06] sm:text-[32vw] lg:-right-[4vw] lg:text-[26vw]"
       >
         MH
       </motion.span>
@@ -124,24 +124,24 @@ export function Hero() {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-7">
           <Reveal show={introStarted} delay={0.05}>
-            <span className="eyebrow text-burgundy">{dict.hero.eyebrow}</span>
+            <span className="eyebrow text-forest">{dict.hero.eyebrow}</span>
           </Reveal>
 
-          <h1 className="mt-5 font-display text-[2.75rem] leading-[1.08] text-espresso sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="mt-5 font-display text-[2.75rem] leading-[1.08] text-ink sm:text-6xl lg:text-[4.2rem]">
             <RevealLine show={introStarted} delay={0.32}>
               {dict.hero.headlineLine1}
             </RevealLine>
             <br />
-            <RevealLine show={introStarted} delay={0.48} className="text-burgundy">
+            <RevealLine show={introStarted} delay={0.48} className="text-forest">
               {dict.hero.headlineLine2}
             </RevealLine>
           </h1>
 
           <Reveal show={introStarted} delay={0.78} className="mt-7 max-w-lg">
-            <p className="font-display text-xl text-espresso/80 sm:text-2xl">
+            <p className="font-display text-xl text-ink/80 sm:text-2xl">
               {dict.hero.subheadline}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-espresso/60">
+            <p className="mt-4 text-base leading-relaxed text-ink/60">
               {dict.hero.description}
             </p>
           </Reveal>
@@ -179,14 +179,14 @@ export function Hero() {
             show={introStarted}
             delay={1.15}
             y={12}
-            className="absolute bottom-8 right-2 z-20 flex items-center gap-3 rounded-2xl bg-cream/95 px-4 py-3.5 shadow-xl shadow-espresso/15 backdrop-blur sm:right-6"
+            className="absolute bottom-8 right-2 z-20 flex items-center gap-3 rounded-2xl bg-cream/95 px-4 py-3.5 shadow-xl shadow-ink/15 backdrop-blur sm:right-6"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-champagne/25 text-champagne">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/25 text-gold">
               <Star className="h-5 w-5 fill-current" />
             </div>
             <div className="leading-tight">
-              <p className="font-display text-lg text-espresso">{siteConfig.stats.rating}</p>
-              <p className="text-xs text-espresso/55">
+              <p className="font-display text-lg text-ink">{siteConfig.stats.rating}</p>
+              <p className="text-xs text-ink/55">
                 {siteConfig.stats.students} {dict.results.students}
               </p>
             </div>

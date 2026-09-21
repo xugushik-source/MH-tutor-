@@ -25,20 +25,20 @@ export function Tutors() {
     <section id="tutors" className="bg-cream py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <SectionReveal className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow text-burgundy">
+          <span className="eyebrow text-forest">
             <LineReveal>{dict.tutors.eyebrow}</LineReveal>
           </span>
-          <h2 className="mt-4 font-display text-4xl text-espresso sm:text-5xl">{dict.tutors.title}</h2>
+          <h2 className="mt-4 font-display text-4xl text-ink sm:text-5xl">{dict.tutors.title}</h2>
         </SectionReveal>
 
         {filterSubject && (
           <div className="mt-8 flex items-center justify-center gap-3">
-            <span className="rounded-full bg-burgundy/10 px-4 py-1.5 text-sm font-medium text-burgundy">
+            <span className="rounded-full bg-forest/10 px-4 py-1.5 text-sm font-medium text-forest">
               {activeSubjectTitle}
             </span>
             <button
               onClick={() => setFilterSubject(null)}
-              className={cn("text-sm font-medium text-espresso/50 underline-offset-2 hover:text-espresso hover:underline")}
+              className={cn("text-sm font-medium text-ink/50 underline-offset-2 hover:text-ink hover:underline")}
             >
               {dict.tutors.viewAll}
             </button>

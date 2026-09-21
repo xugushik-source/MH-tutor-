@@ -1,43 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  /* Warm Ivory / Cream */
+  /* Warm Ivory / Cream — unchanged: never a red/bordeaux tone, already the
+     brand's "cream / ivory" + "warm neutral" categories. */
   --color-cream: #f7f1e6;
   --color-cream-dim: #efe6d3;
   --color-cream-line: #e2d5b8;
 
-  /* Deep Burgundy / Wine */
-  --color-burgundy: #5c1a2e;
-  --color-burgundy-deep: #3c1120;
-  --color-burgundy-soft: #7a2c42;
+  /* Deep Forest Green — primary brand color (replaces the old burgundy).
+     CTAs, nav, headings, brand elements, some large section backgrounds. */
+  --color-forest: #1e3d2f;
+  --color-forest-deep: #12261c;
+  --color-forest-soft: #3c6b52;
 
-  /* Espresso / Near Black */
-  --color-espresso: #221510;
-  --color-espresso-soft: #35241d;
+  /* Sage — secondary, soft backgrounds and small decorative elements. */
+  --color-sage: #a9b79e;
+  --color-sage-soft: #dce3d3;
 
-  /* Champagne / Warm Gold */
-  --color-champagne: #c9a876;
-  --color-champagne-soft: #e2cda3;
+  /* Ink — dark green-graphite text color (replaces the old warm-black
+     "espresso"). Used for body text and neutral UI chrome only. */
+  --color-ink: #1c2620;
+  --color-ink-soft: #2e3a33;
+
+  /* Warm Gold — sparing premium accent (ratings, small trim, fine lines). */
+  --color-gold: #c9a876;
+  --color-gold-soft: #e2cda3;
 
   --background: var(--color-cream);
-  --foreground: var(--color-espresso);
+  --foreground: var(--color-ink);
 
   /* Shared shadow tokens (values already used across components — named
      here once instead of re-typed inline; see docs/MH-BRAND-GUIDE.md §14). */
-  --shadow-soft: 0 8px 30px rgba(34, 21, 16, 0.08);
+  --shadow-soft: 0 8px 30px rgba(28, 38, 32, 0.08);
 }
 
 @theme inline {
   --color-cream: var(--color-cream);
   --color-cream-dim: var(--color-cream-dim);
   --color-cream-line: var(--color-cream-line);
-  --color-burgundy: var(--color-burgundy);
-  --color-burgundy-deep: var(--color-burgundy-deep);
-  --color-burgundy-soft: var(--color-burgundy-soft);
-  --color-espresso: var(--color-espresso);
-  --color-espresso-soft: var(--color-espresso-soft);
-  --color-champagne: var(--color-champagne);
-  --color-champagne-soft: var(--color-champagne-soft);
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-forest-soft: var(--color-forest-soft);
+  --color-sage: var(--color-sage);
+  --color-sage-soft: var(--color-sage-soft);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -115,25 +124,25 @@ body {
 
 .input {
   border-radius: 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--color-espresso) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
   background: color-mix(in srgb, var(--color-cream) 60%, white 0%);
   padding: 0.7rem 1rem;
   font-size: 0.95rem;
-  color: var(--color-espresso);
+  color: var(--color-ink);
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .input:focus {
-  border-color: var(--color-burgundy);
+  border-color: var(--color-forest);
 }
 
 .input::placeholder {
-  color: color-mix(in srgb, var(--color-espresso) 40%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 40%, transparent);
 }
 
 ::selection {
-  background: var(--color-burgundy);
+  background: var(--color-forest);
   color: var(--color-cream);
 }
 

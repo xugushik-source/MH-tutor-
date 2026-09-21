@@ -17,9 +17,9 @@ const spanClasses: Record<Subject["size"], string> = {
 };
 
 const toneClasses: Record<Subject["size"], string> = {
-  lg: "bg-burgundy text-cream",
-  md: "bg-espresso text-cream",
-  sm: "bg-cream text-espresso border border-espresso/12",
+  lg: "bg-forest text-cream",
+  md: "bg-ink text-cream",
+  sm: "bg-cream text-ink border border-ink/12",
 };
 
 const container: Variants = {
@@ -48,10 +48,10 @@ export function Subjects() {
     <section id="subjects" className="bg-cream-dim py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <SectionReveal className="max-w-xl">
-          <span className="eyebrow text-burgundy">
+          <span className="eyebrow text-forest">
             <LineReveal>{dict.subjects.eyebrow}</LineReveal>
           </span>
-          <h2 className="mt-4 font-display text-4xl text-espresso sm:text-5xl">{dict.subjects.title}</h2>
+          <h2 className="mt-4 font-display text-4xl text-ink sm:text-5xl">{dict.subjects.title}</h2>
         </SectionReveal>
 
         <motion.div
@@ -77,7 +77,7 @@ export function Subjects() {
                 aria-hidden="true"
                 className={cn(
                   "pointer-events-none absolute -right-6 -top-6 select-none font-display text-8xl font-semibold leading-none opacity-[0.08]",
-                  subject.size === "sm" ? "text-espresso" : "text-cream",
+                  subject.size === "sm" ? "text-ink" : "text-cream",
                 )}
               >
                 {subject.title.slice(0, 2)}

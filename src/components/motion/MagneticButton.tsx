@@ -18,8 +18,8 @@ interface MagneticButtonProps {
 }
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-burgundy text-cream hover:bg-burgundy-deep",
-  secondary: "border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/5",
+  primary: "bg-forest text-cream hover:bg-forest-deep",
+  secondary: "border border-ink/25 text-ink hover:border-ink hover:bg-ink/5",
   ghost: "text-cream border border-cream/40 hover:bg-cream/10",
 };
 
