@@ -21,6 +21,10 @@
 
   --background: var(--color-cream);
   --foreground: var(--color-espresso);
+
+  /* Shared shadow tokens (values already used across components — named
+     here once instead of re-typed inline; see docs/MH-BRAND-GUIDE.md §14). */
+  --shadow-soft: 0 8px 30px rgba(34, 21, 16, 0.08);
 }
 
 @theme inline {

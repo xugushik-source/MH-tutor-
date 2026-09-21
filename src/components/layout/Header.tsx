@@ -47,7 +47,7 @@ export function Header() {
         className={cn(
           "mx-auto mt-0 flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8",
           scrolled
-            ? "mt-3 rounded-full border border-espresso/10 bg-cream/85 py-2.5 shadow-[0_8px_30px_rgba(34,21,16,0.08)] backdrop-blur-md sm:mx-4 sm:px-6"
+            ? "mt-3 rounded-full border border-espresso/10 bg-cream/85 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-md sm:mx-4 sm:px-6"
             : "py-5",
         )}
       >

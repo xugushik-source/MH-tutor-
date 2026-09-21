@@ -24,6 +24,7 @@ npm run lint
 - `src/config/site.ts` — site-wide config and the placeholder stats (see "Known gaps" below).
 - `src/i18n` — dictionary-based translation architecture (see below).
 - `public/brand`, `public/portraits` — the real logo crop and tutor/founder photos supplied for this build.
+- `docs/MH-BRAND-GUIDE.md` — the brand system (colors, type, logo variants, motion, print/merch/interior rules) derived from this codebase's real design tokens, for use beyond the site (signage, merch, print, the physical center).
 
 ## i18n architecture
 
