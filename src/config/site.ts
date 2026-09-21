@@ -17,6 +17,17 @@ export const siteConfig = {
     telegram: "https://t.me/mh_tutoring",
     facebook: "https://facebook.com/mh.tutoring",
   },
+  // Real MH admin contact for the booking-form -> messenger hand-off
+  // (src/lib/leadMessage.ts). Neither is a real, verified contact yet —
+  // both are intentionally blank rather than guessed. Filling in either
+  // one (digits-only phone incl. country code for WhatsApp, no "@" for
+  // Telegram) immediately activates that "send via ..." button; leaving
+  // both blank keeps the booking modal on its no-backend simulated
+  // submission instead of trying to open a dead chat link.
+  leadCapture: {
+    whatsappNumber: "",
+    telegramUsername: "",
+  },
   // Demo metrics for this showcase build — not real figures. Chosen to stay
   // consistent with the rest of the demo data: 60 = sum of subjects.ts's
   // per-subject tutorsCount, 4.9 ≈ the average of the six tutor ratings in

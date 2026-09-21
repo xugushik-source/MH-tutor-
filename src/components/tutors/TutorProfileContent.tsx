@@ -1,12 +1,12 @@
 "use client";
 
-import { PlayCircle, GraduationCap, BadgeCheck, Quote, Star, ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { PlayCircle, GraduationCap, BadgeCheck, Quote, Star } from "lucide-react";
 import type { Tutor } from "@/data/tutors";
 import { localizeTutor } from "@/data/tutors";
 import { TutorPortraitReveal } from "@/components/tutors/TutorAvatar";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { TutorBookingCta } from "@/components/tutors/TutorBookingCta";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { useDictionary, useLocale } from "@/i18n/provider";
 
 /**
@@ -22,13 +22,7 @@ export function TutorProfileContent({ tutor: baseTutor }: { tutor: Tutor }) {
   return (
     <div className="bg-cream">
       <div className="mx-auto max-w-6xl px-6 pt-32 sm:px-8 sm:pt-36">
-        <Link
-          href="/#tutors"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 transition-colors hover:text-forest"
-        >
-          <ChevronLeft className="h-4 w-4" />
-          {dict.tutors.viewAll}
-        </Link>
+        <Breadcrumbs items={[{ label: dict.nav.tutors, href: "/#tutors" }, { label: tutor.name }]} />
       </div>
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 pb-28 pt-8 sm:px-8 lg:grid-cols-12 lg:gap-10">

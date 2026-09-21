@@ -154,6 +154,14 @@ export function Hero() {
               {dict.hero.ctaSecondary}
             </MagneticButton>
           </Reveal>
+
+          <Reveal show={introStarted} delay={1.15} className="mt-5 flex flex-col gap-1">
+            <p className="flex items-center gap-2 text-sm font-semibold text-forest">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
+              {dict.guarantee.heroShort}
+            </p>
+            <p className="pl-3.5 text-xs text-ink/50">{dict.guarantee.heroNote}</p>
+          </Reveal>
         </div>
 
         <div className="relative h-[420px] sm:h-[480px] lg:col-span-5 lg:h-[560px]">

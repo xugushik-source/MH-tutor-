@@ -5,6 +5,7 @@ import type { Tutor } from "@/data/tutors";
 import { TutorAvatar } from "@/components/tutors/TutorAvatar";
 import { useBookingModal } from "@/components/booking/BookingModalContext";
 import { useDictionary } from "@/i18n/provider";
+import { individualPrice, formatAmd } from "@/data/pricing";
 
 export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
   const { open } = useBookingModal();
@@ -27,8 +28,8 @@ export function TutorBookingCta({ tutor }: { tutor: Tutor }) {
         </div>
 
         <div className="mt-5 flex items-baseline gap-1.5 border-t border-ink/10 pt-5">
-          <span className="font-display text-3xl text-ink">${tutor.priceFrom}</span>
-          <span className="text-sm text-ink/50">/ {dict.tutorProfile.perLesson}</span>
+          <span className="font-display text-2xl text-ink sm:text-3xl">{formatAmd(individualPrice)}</span>
+          <span className="text-sm text-ink/50">/ {dict.pricing.perMonth}</span>
         </div>
 
         <div className="mt-4 flex flex-col gap-2 text-sm text-ink/60">

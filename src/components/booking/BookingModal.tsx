@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Check } from "lucide-react";
+import { X, Check, Send, MessageCircle } from "lucide-react";
 import { useBookingModal } from "./BookingModalContext";
 import { useDictionary, useLocale } from "@/i18n/provider";
 import { localizeSubjects } from "@/data/subjects";
 import { localizeWizardOptions } from "@/data/wizard";
+import {
+  groupSizes,
+  miniGroupSizes,
+  resolveUnitPrice,
+  computePrice,
+  formatAmd,
+  type FormatId,
+} from "@/data/pricing";
 import { submitBookingRequest, type BookingPayload } from "@/lib/booking";
 import { cn } from "@/lib/utils";
 
@@ -16,12 +24,25 @@ const emptyForm: BookingPayload = {
   name: "",
   age: "",
   subject: "",
+  format: "",
+  groupSize: "",
+  subjectCount: "1",
+  wantsGuarantee: false,
   goal: "",
   level: "",
   time: "",
   phone: "",
   comment: "",
 };
+
+const formatLabelKeys: Record<FormatId, "formatIndividual" | "formatMiniGroup" | "formatGroup" | "formatExamIntensive"> = {
+  individual: "formatIndividual",
+  examIntensive: "formatExamIntensive",
+  miniGroup: "formatMiniGroup",
+  group: "formatGroup",
+};
+
+const formatOrder: FormatId[] = ["group", "miniGroup", "individual", "examIntensive"];
 
 export function BookingModal() {
   const { isOpen, prefill, close } = useBookingModal();
@@ -32,6 +53,10 @@ export function BookingModal() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<BookingPayload>(emptyForm);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [handoff, setHandoff] = useState<{ whatsappUrl: string | null; telegramUrl: string | null }>({
+    whatsappUrl: null,
+    telegramUrl: null,
+  });
 
   // Reset the flow whenever the modal transitions from closed to open.
   // Adjusted during render (React's documented pattern for state that
@@ -66,7 +91,14 @@ export function BookingModal() {
 
   async function handleSubmit() {
     setStatus("submitting");
-    await submitBookingRequest(form);
+    const result = await submitBookingRequest(form, {
+      locale,
+      sourcePath: typeof window !== "undefined" ? window.location.pathname : "/",
+    });
+    setHandoff({ whatsappUrl: result.whatsappUrl, telegramUrl: result.telegramUrl });
+    if (result.whatsappUrl) {
+      window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
+    }
     setStatus("success");
   }
 
@@ -110,7 +142,7 @@ export function BookingModal() {
             </button>
 
             {status === "success" ? (
-              <SuccessScreen onClose={close} />
+              <SuccessScreen onClose={close} telegramUrl={handoff.telegramUrl} whatsappSent={!!handoff.whatsappUrl} />
             ) : (
               <>
                 <div className="mb-6 pr-10">
@@ -186,6 +218,89 @@ export function BookingModal() {
                             ))}
                           </select>
                         </Field>
+                        <Field label={dict.leadForm.formatLabel}>
+                          <select
+                            value={form.format}
+                            onChange={(e) => {
+                              update("format", e.target.value);
+                              update("groupSize", "");
+                            }}
+                            className="input"
+                          >
+                            <option value="" disabled>
+                              —
+                            </option>
+                            {formatOrder.map((id) => (
+                              <option key={id} value={id}>
+                                {dict.leadForm[formatLabelKeys[id]]}
+                              </option>
+                            ))}
+                          </select>
+                        </Field>
+
+                        {(form.format === "group" || form.format === "miniGroup") && (
+                          <Field label={dict.leadForm.groupSizeLabel}>
+                            <select
+                              value={form.groupSize}
+                              onChange={(e) => update("groupSize", e.target.value)}
+                              className="input"
+                            >
+                              <option value="" disabled>
+                                —
+                              </option>
+                              {(form.format === "group" ? groupSizes : miniGroupSizes).map((g) => (
+                                <option key={g.size} value={g.size}>
+                                  {g.size} {dict.pricing.students} — {formatAmd(g.pricePerStudent)}
+                                </option>
+                              ))}
+                            </select>
+                          </Field>
+                        )}
+
+                        {form.format === "examIntensive" && (
+                          <Field label={dict.leadForm.groupSizeLabel}>
+                            <select
+                              value={form.groupSize}
+                              onChange={(e) => update("groupSize", e.target.value)}
+                              className="input"
+                            >
+                              <option value="" disabled>
+                                —
+                              </option>
+                              <option value="group">{dict.pricing.examIntensiveGroupLabel}</option>
+                              <option value="individual">{dict.pricing.examIntensiveIndividualLabel}</option>
+                            </select>
+                          </Field>
+                        )}
+
+                        <Field label={dict.leadForm.subjectCountLabel}>
+                          <select
+                            value={form.subjectCount}
+                            onChange={(e) => update("subjectCount", e.target.value)}
+                            className="input"
+                          >
+                            <option value="1">{dict.leadForm.subjectCount1}</option>
+                            <option value="2">{dict.leadForm.subjectCount2}</option>
+                            <option value="3">{dict.leadForm.subjectCount3}</option>
+                          </select>
+                        </Field>
+
+                        {(() => {
+                          const needsSubChoice = form.format === "group" || form.format === "miniGroup" || form.format === "examIntensive";
+                          if (needsSubChoice && !form.groupSize) return null;
+                          const unitPrice = resolveUnitPrice(form.format, form.groupSize);
+                          if (unitPrice == null) return null;
+                          const { total } = computePrice(unitPrice, Number(form.subjectCount));
+                          return (
+                            <p className="flex items-baseline justify-between rounded-xl bg-sage-soft/50 px-4 py-3">
+                              <span className="text-sm text-ink/70">{dict.leadForm.priceSummaryLabel}</span>
+                              <span className="font-display text-lg text-ink">
+                                {formatAmd(total)} / {dict.pricing.perMonth}
+                              </span>
+                            </p>
+                          );
+                        })()}
+
                         <Field label={dict.booking.goalLabel}>
                           <select
                             value={form.goal}
@@ -259,6 +374,15 @@ export function BookingModal() {
                             className="input resize-none"
                           />
                         </Field>
+                        <label className="flex items-center gap-2.5 text-sm text-ink/75">
+                          <input
+                            type="checkbox"
+                            checked={form.wantsGuarantee}
+                            onChange={(e) => update("wantsGuarantee", e.target.checked)}
+                            className="h-4 w-4 shrink-0 accent-forest"
+                          />
+                          {dict.leadForm.guaranteeInterestLabel}
+                        </label>
                       </>
                     )}
                   </motion.div>
@@ -310,8 +434,18 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function SuccessScreen({ onClose }: { onClose: () => void }) {
+function SuccessScreen({
+  onClose,
+  telegramUrl,
+  whatsappSent,
+}: {
+  onClose: () => void;
+  telegramUrl: string | null;
+  whatsappSent: boolean;
+}) {
   const dict = useDictionary();
+  const isConfigured = whatsappSent || telegramUrl;
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -323,6 +457,26 @@ function SuccessScreen({ onClose }: { onClose: () => void }) {
       </div>
       <h3 className="font-display text-2xl text-ink">{dict.booking.successTitle}</h3>
       <p className="max-w-xs text-sm text-ink/60">{dict.booking.successText}</p>
+      {!isConfigured && (
+        <p className="max-w-xs text-xs text-ink/45">{dict.leadForm.notConfiguredNote}</p>
+      )}
+      {telegramUrl && (
+        <a
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-forest/40"
+        >
+          <Send className="h-4 w-4" />
+          {dict.leadForm.sendViaTelegram}
+        </a>
+      )}
+      {whatsappSent && (
+        <p className="flex items-center gap-1.5 text-xs text-forest">
+          <MessageCircle className="h-3.5 w-3.5" />
+          {dict.leadForm.sendViaWhatsapp}
+        </p>
+      )}
       <button
         onClick={onClose}
         className="mt-2 rounded-full border border-ink/20 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ink/50"

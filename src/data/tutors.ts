@@ -8,6 +8,12 @@ export interface TutorReview {
   text: string;
 }
 
+// priceFrom/currency are superseded by MH's approved AMD package pricing in
+// data/pricing.ts (group/mini-group/individual/exam-intensive) and are no
+// longer rendered anywhere — TutorBookingCta shows the shared individual
+// package price instead of a per-tutor figure. Left in place rather than
+// stripped from every tutor record, since removing the field is a bigger,
+// unrequested data-model change; treat these numbers as unused.
 export interface Tutor {
   slug: string;
   name: string;
@@ -44,7 +50,7 @@ export const tutors: Tutor[] = [
     languages: ["Русский", "Английский", "Армянский"],
     rating: 4.9,
     reviewsCount: 132,
-    priceFrom: 25,
+    priceFrom: 18,
     currency: "USD",
     shortBio: "Основательница центра. Помогаю заговорить на английском без страха ошибиться — уверенно и по делу.",
     about: [
@@ -90,7 +96,7 @@ export const tutors: Tutor[] = [
     languages: ["Русский", "Армянский"],
     rating: 4.8,
     reviewsCount: 98,
-    priceFrom: 20,
+    priceFrom: 15,
     currency: "USD",
     shortBio: "Объясняю математику так, чтобы она перестала быть страшной.",
     about: [
@@ -135,7 +141,7 @@ export const tutors: Tutor[] = [
     languages: ["Русский", "Армянский"],
     rating: 5.0,
     reviewsCount: 76,
-    priceFrom: 18,
+    priceFrom: 14,
     currency: "USD",
     shortBio: "Учу не зубрить правила, а понимать язык.",
     about: [
@@ -174,7 +180,7 @@ export const tutors: Tutor[] = [
     languages: ["Русский", "Английский", "Армянский"],
     rating: 4.9,
     reviewsCount: 61,
-    priceFrom: 30,
+    priceFrom: 20,
     currency: "USD",
     shortBio: "Веду к конкретному баллу — с чёткой стратегией и трекингом прогресса.",
     about: [
@@ -213,7 +219,7 @@ export const tutors: Tutor[] = [
     languages: ["Грузинский", "Русский", "Английский"],
     rating: 4.8,
     reviewsCount: 34,
-    priceFrom: 16,
+    priceFrom: 13,
     currency: "USD",
     shortBio: "Помогаю освоить грузинский быстро и без стресса — с нуля или для школы.",
     about: [
@@ -252,7 +258,7 @@ export const tutors: Tutor[] = [
     languages: ["Русский", "Армянский"],
     rating: 5.0,
     reviewsCount: 54,
-    priceFrom: 17,
+    priceFrom: 14,
     currency: "USD",
     shortBio: "Готовлю к школе бережно — через игру, а не давление.",
     about: [

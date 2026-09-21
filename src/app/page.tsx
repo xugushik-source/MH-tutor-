@@ -6,6 +6,8 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { WhyMH } from "@/components/sections/WhyMH";
 import { ClassExperience } from "@/components/sections/ClassExperience";
 import { Results } from "@/components/sections/Results";
+import { Pricing } from "@/components/sections/Pricing";
+import { Guarantee } from "@/components/sections/Guarantee";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { TrialCta } from "@/components/sections/TrialCta";
 import { Faq } from "@/components/sections/Faq";
@@ -34,6 +36,8 @@ export default function Home() {
       <WhyMH />
       <ClassExperience />
       <Results />
+      <Pricing />
+      <Guarantee />
       <Testimonials />
       <TrialCta />
       <Faq />
