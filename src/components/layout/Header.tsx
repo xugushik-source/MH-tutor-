@@ -77,13 +77,16 @@ export function Header() {
           </MagneticButton>
         </div>
 
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink lg:hidden"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label={menuOpen ? dict.common.closeMenu : dict.common.openMenu}
-        >
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2.5 lg:hidden">
+          <LanguageSwitcher />
+          <button
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink/15 text-ink"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? dict.common.closeMenu : dict.common.openMenu}
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -105,9 +108,6 @@ export function Header() {
                 {dict.nav[item.key]}
               </Link>
             ))}
-            <div className="flex items-center justify-center border-t border-ink/10 py-3">
-              <LanguageSwitcher />
-            </div>
             <button
               onClick={() => {
                 setMenuOpen(false);
