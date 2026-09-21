@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Mic, Video, FileText, NotebookPen, ListChecks, TrendingUp } from "lucide-react";
-import { PlaceholderPortrait } from "@/components/ui/PlaceholderPortrait";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { StaggerReveal } from "@/components/motion/StaggerReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
@@ -26,7 +25,7 @@ export function ClassExperience() {
         <StaggerReveal className="mt-16 grid grid-cols-1 gap-4 rounded-[2rem] border border-espresso/10 bg-cream p-4 shadow-2xl shadow-espresso/10 sm:p-6 lg:grid-cols-12">
           <div className="flex flex-col gap-4 lg:col-span-8">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="relative aspect-video overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
                   src="/portraits/levon.jpg"
                   alt=""
@@ -38,8 +37,14 @@ export function ClassExperience() {
                   {dict.classExperience.teacher}
                 </span>
               </div>
-              <div className="relative aspect-video overflow-hidden rounded-2xl">
-                <PlaceholderPortrait initial="М" tone="burgundy" className="h-full w-full" textClassName="text-2xl" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                <Image
+                  src="/portraits/student-demo.jpg"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
                 <span className="absolute bottom-3 left-3 rounded-full bg-espresso/70 px-3 py-1 text-xs text-cream">
                   {dict.classExperience.student}
                 </span>
