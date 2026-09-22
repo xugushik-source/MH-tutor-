@@ -18,10 +18,11 @@ const en: Dictionary = {
     cta: "Trial lesson",
   },
   hero: {
-    eyebrow: "Online tutoring center",
-    headlineLine1: "Let's find a tutor",
-    headlineLine2: "who actually works for you.",
-    subheadline: "Personal online lessons built for real results.",
+    eyebrow: "Result guarantee",
+    headlineLine1: "Your child's result,",
+    headlineLine2: "written into the contract.",
+    subheadline:
+      "We'll assess the level for free, set an achievable goal, and build the prep program.",
     description:
       "We match a tutor to your goal, level, personality and schedule.",
     ctaPrimary: "Find a tutor",

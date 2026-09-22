@@ -25,7 +25,7 @@ export function LineReveal({ children, className, delay = 0, y = 16 }: LineRevea
         initial={{ y: "100%", opacity: 0 }}
         animate={inView ? { y: "0%", opacity: 1 } : undefined}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay }}
-        className={cn("inline-block", className)}
+        className={cn("inline-block max-w-full break-words", className)}
         style={{ "--y": `${y}px` } as React.CSSProperties}
       >
         {children}

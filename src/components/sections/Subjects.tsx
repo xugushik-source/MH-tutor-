@@ -86,7 +86,7 @@ export function Subjects() {
               <div className="relative flex items-start justify-between">
                 <h3
                   className={cn(
-                    "font-display leading-tight",
+                    "min-w-0 font-display leading-tight break-words",
                     subject.size === "lg" ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl",
                   )}
                 >
