@@ -10,7 +10,9 @@ export function buildOrganizationSchema() {
     alternateName: siteConfig.shortName,
     url: siteConfig.url,
     description: siteConfig.description,
-    email: siteConfig.contacts.email,
+    // No verified email yet — omit rather than publish a placeholder address
+    // in structured data. See site.ts contacts.email.
+    ...(siteConfig.contacts.email ? { email: siteConfig.contacts.email } : {}),
     sameAs: [siteConfig.contacts.instagram, siteConfig.contacts.telegram, siteConfig.contacts.facebook],
   };
 }

@@ -39,7 +39,7 @@ export function ClassExperience() {
               </div>
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
-                  src="/portraits/student-demo.jpg"
+                  src="/portraits/student.jpg"
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 50vw, 33vw"

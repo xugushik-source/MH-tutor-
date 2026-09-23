@@ -10,6 +10,10 @@ import { useDictionary } from "@/i18n/provider";
 export function Footer() {
   const dict = useDictionary();
   const year = new Date().getFullYear();
+  const whatsappHref = siteConfig.leadCapture.whatsappNumber
+    ? `https://wa.me/${siteConfig.leadCapture.whatsappNumber}`
+    : null;
+  const hasContactInfo = !!siteConfig.contacts.email || !!whatsappHref;
 
   const navItems = [
     { href: "/#tutors", label: dict.nav.tutors },
@@ -49,23 +53,31 @@ export function Footer() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-3">
-              <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
-                {dict.footer.contactsTitle}
-              </span>
-              <a
-                href={`mailto:${siteConfig.contacts.email}`}
-                className="text-sm text-cream/75 transition-colors hover:text-gold"
-              >
-                {siteConfig.contacts.email}
-              </a>
-              <a
-                href={siteConfig.contacts.whatsappLink}
-                className="text-sm text-cream/75 transition-colors hover:text-gold"
-              >
-                WhatsApp
-              </a>
-            </div>
+            {hasContactInfo && (
+              <div className="flex flex-col gap-3">
+                <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
+                  {dict.footer.contactsTitle}
+                </span>
+                {siteConfig.contacts.email && (
+                  <a
+                    href={`mailto:${siteConfig.contacts.email}`}
+                    className="text-sm text-cream/75 transition-colors hover:text-gold"
+                  >
+                    {siteConfig.contacts.email}
+                  </a>
+                )}
+                {whatsappHref && (
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-cream/75 transition-colors hover:text-gold"
+                  >
+                    WhatsApp
+                  </a>
+                )}
+              </div>
+            )}
 
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wide text-cream/40">
@@ -78,9 +90,11 @@ export function Footer() {
                 <SocialIcon href={siteConfig.contacts.telegram} label="Telegram">
                   <Send className="h-4 w-4" />
                 </SocialIcon>
-                <SocialIcon href={siteConfig.contacts.whatsappLink} label="WhatsApp">
-                  <MessageCircle className="h-4 w-4" />
-                </SocialIcon>
+                {whatsappHref && (
+                  <SocialIcon href={whatsappHref} label="WhatsApp">
+                    <MessageCircle className="h-4 w-4" />
+                  </SocialIcon>
+                )}
               </div>
             </div>
           </div>

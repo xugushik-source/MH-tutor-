@@ -13,7 +13,6 @@ export function TermsContent() {
       <div className="mt-6 flex flex-col gap-4 text-sm leading-relaxed text-ink/70">
         <p>{dict.legal.termsP1}</p>
         <p>{dict.legal.termsP2}</p>
-        <p>{dict.legal.termsP3}</p>
       </div>
     </div>
   );

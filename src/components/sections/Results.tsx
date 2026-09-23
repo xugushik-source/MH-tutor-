@@ -34,8 +34,6 @@ export function Results() {
             </div>
           ))}
         </StaggerReveal>
-
-        <p className="mt-10 text-center text-xs text-cream/30">{dict.results.placeholderNote}</p>
       </div>
     </section>
   );

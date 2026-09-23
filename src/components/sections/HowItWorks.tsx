@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { processSteps } from "@/data/how-it-works";
+import { localizeProcessSteps } from "@/data/how-it-works";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 export function HowItWorks() {
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const processSteps = localizeProcessSteps(locale);
   const [active, setActive] = useState(0);
   const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
 

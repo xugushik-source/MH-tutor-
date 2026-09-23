@@ -98,7 +98,6 @@ const en: Dictionary = {
     tutorsStat: "tutors",
     subjectsStat: "subjects",
     rating: "rating",
-    placeholderNote: "These figures are placeholders and will be replaced with real data before launch.",
   },
   testimonials: {
     eyebrow: "Reviews",
@@ -165,11 +164,11 @@ const en: Dictionary = {
       "Marianna Hayrapetyan Tutoring Center processes personal data submitted through the site's forms (name, student's age, contact details) solely to match a tutor and arrange a trial lesson.",
     privacyP2Before:
       "Data is not shared with third parties except where necessary to provide the educational service. You can request deletion of your data by writing to",
-    privacyP3: "This page is a placeholder and should be replaced with the full privacy policy text before the site goes into production.",
+    privacyP2NoEmail:
+      "Data is not shared with third parties except where necessary to provide the educational service. You can request deletion of your data by contacting the center through the contact details on this site.",
     termsP1:
       "By using the Marianna Hayrapetyan Tutoring Center website, you agree that its content is informational and that booking a trial lesson does not create any obligation until confirmed by the tutor.",
     termsP2: "Lesson pricing and scheduling are arranged individually after the trial lesson.",
-    termsP3: "This page is a placeholder and should be replaced with the full terms of use before the site goes into production.",
   },
   breadcrumbs: {
     home: "Home",

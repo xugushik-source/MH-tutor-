@@ -1,16 +1,18 @@
 "use client";
 
 import { Target, Users, CalendarClock, LineChart, Globe2, ShieldCheck } from "lucide-react";
-import { benefits } from "@/data/how-it-works";
+import { localizeBenefits } from "@/data/how-it-works";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import { StaggerReveal } from "@/components/motion/StaggerReveal";
 import { LineReveal } from "@/components/motion/LineReveal";
-import { useDictionary } from "@/i18n/provider";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 const icons = [Target, Users, CalendarClock, LineChart, Globe2, ShieldCheck];
 
 export function WhyMH() {
   const dict = useDictionary();
+  const { locale } = useLocale();
+  const benefits = localizeBenefits(locale);
 
   return (
     <section className="bg-cream py-24 sm:py-32">
@@ -27,7 +29,7 @@ export function WhyMH() {
             const Icon = icons[i % icons.length];
             return (
               <div
-                key={benefit.title}
+                key={benefit.id}
                 className="flex flex-col gap-4 rounded-[1.5rem] border border-ink/10 bg-sage-soft/40 p-7 transition-colors duration-300 hover:border-forest/30"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-forest/10 text-forest">

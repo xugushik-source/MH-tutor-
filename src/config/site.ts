@@ -4,15 +4,15 @@ export const siteConfig = {
   initials: "MH",
   founder: "Marianna Hayrapetyan",
   tagline: "Tutoring Center",
-  url: "https://mh-tutoring.example",
+  url: "https://mh-tutor.vercel.app",
   description:
     "Personal online lessons with tutors hand-picked for the Marianna Hayrapetyan center. We match a tutor to your goal, level and schedule.",
   locale: "en" as const,
   supportedLocales: ["en", "hy", "ru"] as const,
   contacts: {
-    whatsapp: "+374000000000",
-    whatsappLink: "https://wa.me/374000000000",
-    email: "hello@mh-tutoring.example",
+    // No verified email exists yet — left blank rather than guessed.
+    // Footer/Privacy-page/JSON-LD all render conditionally on this being set.
+    email: "",
     instagram: "https://instagram.com/mh.tutoring",
     telegram: "https://t.me/mh_tutoring",
     facebook: "https://facebook.com/mh.tutoring",
