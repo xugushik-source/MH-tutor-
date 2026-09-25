@@ -4,14 +4,6 @@ import "./globals.css";
 import { I18nProvider } from "@/i18n/provider";
 import { defaultLocale } from "@/i18n";
 import { siteConfig } from "@/config/site";
-import { SplashScreen } from "@/components/splash/SplashScreen";
-import { IntroProvider } from "@/components/splash/IntroProvider";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { BookingModalProvider } from "@/components/booking/BookingModalContext";
-import { BookingModal } from "@/components/booking/BookingModal";
-import { TutorFilterProvider } from "@/components/sections/TutorFilterContext";
-import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -59,20 +51,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable}`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink antialiased">
-        <I18nProvider initialLocale={defaultLocale}>
-          <IntroProvider>
-            <BookingModalProvider>
-              <TutorFilterProvider>
-                <SplashScreen />
-                <Header />
-                <main className="flex-1 pb-20 lg:pb-0">{children}</main>
-                <Footer />
-                <MobileStickyCta />
-                <BookingModal />
-              </TutorFilterProvider>
-            </BookingModalProvider>
-          </IntroProvider>
-        </I18nProvider>
+        <I18nProvider initialLocale={defaultLocale}>{children}</I18nProvider>
       </body>
     </html>
   );

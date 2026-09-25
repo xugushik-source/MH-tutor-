@@ -111,6 +111,9 @@ export function Footer() {
             <Link href="/terms" className="transition-colors hover:text-gold">
               {dict.footer.terms}
             </Link>
+            <Link href="/dashboard" className="transition-colors hover:text-gold">
+              {dict.footer.teacherLogin}
+            </Link>
           </div>
         </div>
       </div>

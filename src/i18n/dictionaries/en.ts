@@ -125,6 +125,7 @@ const en: Dictionary = {
     followTitle: "Follow us",
     privacy: "Privacy Policy",
     terms: "Terms of Use",
+    teacherLogin: "Teacher login",
     rights: "All rights reserved.",
   },
   booking: {
