@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { siteConfig } from "@/config/site";
 
 export type AuthFormState = {
   variant: "error" | "info";
@@ -51,7 +52,14 @@ export async function signUp(
   const { error, data } = await supabase.auth.signUp({
     email,
     password,
-    options: { data: { full_name: fullName } },
+    options: {
+      data: { full_name: fullName },
+      // Without this, Supabase falls back to the project's Site URL
+      // setting (defaults to http://localhost:3000) for the confirmation
+      // link — this must also be added to the Redirect URLs allow list
+      // in the Supabase dashboard, or it's silently ignored.
+      emailRedirectTo: `${siteConfig.url}/dashboard`,
+    },
   });
 
   if (error) {
