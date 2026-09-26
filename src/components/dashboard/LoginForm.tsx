@@ -2,10 +2,13 @@
 
 import { useActionState, useState } from "react";
 import { signIn, signUp, type AuthFormState } from "@/app/dashboard/login/actions";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 const initialState: AuthFormState = null;
 
 export function LoginForm() {
+  const dict = useDictionary().dashboard.login;
+  const { locale } = useLocale();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [signInState, signInAction, signInPending] = useActionState(signIn, initialState);
   const [signUpState, signUpAction, signUpPending] = useActionState(signUp, initialState);
@@ -13,8 +16,11 @@ export function LoginForm() {
   const state = mode === "signin" ? signInState : signUpState;
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="mb-8 flex gap-1 rounded-full border border-ink/10 bg-ink/5 p-1">
+    <div className="flex w-full max-w-sm flex-col items-center">
+      <h1 className="mb-2 font-display text-2xl text-ink">{dict.title}</h1>
+      <p className="mb-8 text-center text-sm text-ink/60">{dict.subtitle}</p>
+
+      <div className="mb-8 flex w-full gap-1 rounded-full border border-ink/10 bg-ink/5 p-1">
         <button
           type="button"
           onClick={() => setMode("signin")}
@@ -22,7 +28,7 @@ export function LoginForm() {
             mode === "signin" ? "bg-forest text-cream" : "text-ink/60"
           }`}
         >
-          Sign in
+          {dict.signInTab}
         </button>
         <button
           type="button"
@@ -31,34 +37,46 @@ export function LoginForm() {
             mode === "signup" ? "bg-forest text-cream" : "text-ink/60"
           }`}
         >
-          Create account
+          {dict.signUpTab}
         </button>
       </div>
 
       {mode === "signin" ? (
         <form action={signInAction} className="flex flex-col gap-4">
-          <Field label="Email" name="email" type="email" autoComplete="email" required />
+          <input type="hidden" name="locale" value={locale} />
+          <Field label={dict.emailLabel} name="email" type="email" autoComplete="email" required />
           <Field
-            label="Password"
+            label={dict.passwordLabel}
             name="password"
             type="password"
             autoComplete="current-password"
             required
           />
-          <SubmitButton pending={signInPending}>Sign in</SubmitButton>
+          <SubmitButton pending={signInPending} pendingLabel={dict.pending}>
+            {dict.signInButton}
+          </SubmitButton>
         </form>
       ) : (
         <form action={signUpAction} className="flex flex-col gap-4">
-          <Field label="Full name" name="fullName" type="text" autoComplete="name" required />
-          <Field label="Email" name="email" type="email" autoComplete="email" required />
+          <input type="hidden" name="locale" value={locale} />
           <Field
-            label="Password"
+            label={dict.fullNameLabel}
+            name="fullName"
+            type="text"
+            autoComplete="name"
+            required
+          />
+          <Field label={dict.emailLabel} name="email" type="email" autoComplete="email" required />
+          <Field
+            label={dict.passwordLabel}
             name="password"
             type="password"
             autoComplete="new-password"
             required
           />
-          <SubmitButton pending={signUpPending}>Create account</SubmitButton>
+          <SubmitButton pending={signUpPending} pendingLabel={dict.pending}>
+            {dict.signUpButton}
+          </SubmitButton>
         </form>
       )}
 
@@ -105,9 +123,11 @@ function Field({
 function SubmitButton({
   children,
   pending,
+  pendingLabel,
 }: {
   children: React.ReactNode;
   pending: boolean;
+  pendingLabel: string;
 }) {
   return (
     <button
@@ -115,7 +135,7 @@ function SubmitButton({
       disabled={pending}
       className="mt-2 rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
     >
-      {pending ? "Please wait…" : children}
+      {pending ? pendingLabel : children}
     </button>
   );
 }

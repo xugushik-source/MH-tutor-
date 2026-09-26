@@ -3,21 +3,28 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { siteConfig } from "@/config/site";
+import { getDictionary, defaultLocale, locales, type Locale } from "@/i18n";
 
 export type AuthFormState = {
   variant: "error" | "info";
   message: string;
 } | null;
 
+function localeFrom(formData: FormData): Locale {
+  const raw = String(formData.get("locale") ?? "");
+  return (locales as readonly string[]).includes(raw) ? (raw as Locale) : defaultLocale;
+}
+
 export async function signIn(
   _prevState: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> {
+  const dict = getDictionary(localeFrom(formData)).dashboard.login;
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 
   if (!email || !password) {
-    return { variant: "error", message: "Enter your email and password." };
+    return { variant: "error", message: dict.errorEmailPassword };
   }
 
   const supabase = await createClient();
@@ -34,18 +41,19 @@ export async function signUp(
   _prevState: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> {
+  const dict = getDictionary(localeFrom(formData)).dashboard.login;
   const fullName = String(formData.get("fullName") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 
   if (!fullName) {
-    return { variant: "error", message: "Enter your name." };
+    return { variant: "error", message: dict.errorName };
   }
   if (!email) {
-    return { variant: "error", message: "Enter your email." };
+    return { variant: "error", message: dict.errorEmail };
   }
   if (password.length < 8) {
-    return { variant: "error", message: "Password must be at least 8 characters." };
+    return { variant: "error", message: dict.errorPasswordLength };
   }
 
   const supabase = await createClient();
@@ -69,7 +77,7 @@ export async function signUp(
   if (!data.session) {
     return {
       variant: "info",
-      message: "Account created — check your email to confirm it, then sign in below.",
+      message: dict.confirmEmailInfo,
     };
   }
 

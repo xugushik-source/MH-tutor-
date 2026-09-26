@@ -5,6 +5,7 @@ import {
   gradeSubmissionAction,
   type GradeFormState,
 } from "@/app/dashboard/(app)/homework/actions";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 const initialState: GradeFormState = null;
 
@@ -15,6 +16,8 @@ export function GradeSubmissionForm({
   assignmentId: string;
   students: { id: string; full_name: string }[];
 }) {
+  const dict = useDictionary().dashboard.homeworkDetail;
+  const { locale } = useLocale();
   const [state, formAction, pending] = useActionState(gradeSubmissionAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -26,13 +29,14 @@ export function GradeSubmissionForm({
 
   return (
     <form ref={formRef} action={formAction} className="flex flex-col gap-4">
+      <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="assignmentId" value={assignmentId} />
 
       <label className="flex flex-col gap-1.5 text-sm">
-        <span className="text-ink/70">Student</span>
+        <span className="text-ink/70">{dict.studentLabel}</span>
         <select name="studentId" required defaultValue="" className="input">
           <option value="" disabled>
-            Choose a student
+            {dict.chooseStudentPlaceholder}
           </option>
           {students.map((student) => (
             <option key={student.id} value={student.id}>
@@ -43,7 +47,7 @@ export function GradeSubmissionForm({
       </label>
 
       <label className="flex flex-col gap-1.5 text-sm">
-        <span className="text-ink/70">Completed homework (photo or PDF)</span>
+        <span className="text-ink/70">{dict.fileLabel}</span>
         <input
           name="file"
           type="file"
@@ -58,7 +62,7 @@ export function GradeSubmissionForm({
         disabled={pending}
         className="self-start rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-40"
       >
-        {pending ? "Uploading & grading…" : "Upload & grade"}
+        {pending ? dict.uploadingButton : dict.uploadButton}
       </button>
 
       {state?.error ? <p className="text-sm text-red-600">{state.error}</p> : null}

@@ -7,17 +7,25 @@ import { createClient } from "@/lib/supabase/server";
 import { generateHomework, type Subject } from "@/lib/ai/generate";
 import { gradeSubmission, type SubmissionMediaType } from "@/lib/ai/grade";
 import { isAiConfigured } from "@/lib/ai/client";
+import { getDictionary, defaultLocale, locales, type Locale } from "@/i18n";
 
 export type GenerateFormState = { error: string } | null;
 
 const SUBJECTS: Subject[] = ["english", "math", "russian", "other"];
 
+function localeFrom(formData: FormData): Locale {
+  const raw = String(formData.get("locale") ?? "");
+  return (locales as readonly string[]).includes(raw) ? (raw as Locale) : defaultLocale;
+}
+
 export async function generateHomeworkAction(
   _prevState: GenerateFormState,
   formData: FormData
 ): Promise<GenerateFormState> {
+  const dict = getDictionary(localeFrom(formData)).dashboard.homeworkNew;
+
   if (!isAiConfigured()) {
-    return { error: "AI homework generation isn't configured yet." };
+    return { error: dict.errorNotConfigured };
   }
 
   const user = await verifyTeacher();
@@ -28,17 +36,17 @@ export async function generateHomeworkAction(
   const studentId = String(formData.get("studentId") ?? "").trim();
 
   if (!SUBJECTS.includes(subject as Subject)) {
-    return { error: "Choose a subject." };
+    return { error: dict.errorChooseSubject };
   }
   if (!topic) {
-    return { error: "Enter a topic for the homework." };
+    return { error: dict.errorEnterTopic };
   }
 
   let content: string;
   try {
     content = await generateHomework({ subject: subject as Subject, topic, level });
   } catch {
-    return { error: "AI generation failed — try again." };
+    return { error: dict.errorGenerationFailed };
   }
 
   const supabase = await createClient();
@@ -56,7 +64,7 @@ export async function generateHomeworkAction(
     .single();
 
   if (error || !data) {
-    return { error: error?.message ?? "Could not save the assignment." };
+    return { error: error?.message ?? dict.errorSaveFailed };
   }
 
   redirect(`/dashboard/homework/${data.id}`);
@@ -75,8 +83,10 @@ export async function gradeSubmissionAction(
   _prevState: GradeFormState,
   formData: FormData
 ): Promise<GradeFormState> {
+  const dict = getDictionary(localeFrom(formData)).dashboard.homeworkDetail;
+
   if (!isAiConfigured()) {
-    return { error: "AI grading isn't configured yet." };
+    return { error: dict.errorNotConfigured };
   }
 
   const user = await verifyTeacher();
@@ -85,15 +95,15 @@ export async function gradeSubmissionAction(
   const file = formData.get("file") as File | null;
 
   if (!studentId) {
-    return { error: "Choose which student this submission is for." };
+    return { error: dict.errorChooseStudent };
   }
   if (!file || file.size === 0) {
-    return { error: "Choose a file to upload." };
+    return { error: dict.errorChooseFile };
   }
 
   const mediaType = MEDIA_TYPES[file.type];
   if (!mediaType) {
-    return { error: "Upload a JPEG, PNG, WebP, or PDF file." };
+    return { error: dict.errorFileType };
   }
 
   const supabase = await createClient();
@@ -106,7 +116,7 @@ export async function gradeSubmissionAction(
     .single();
 
   if (assignmentError || !assignment) {
-    return { error: "Assignment not found." };
+    return { error: dict.errorAssignmentNotFound };
   }
 
   const filePath = `${user.id}/${studentId}/${assignment.id}-${Date.now()}-${file.name}`;
@@ -132,7 +142,7 @@ export async function gradeSubmissionAction(
     .single();
 
   if (submissionError || !submission) {
-    return { error: submissionError?.message ?? "Could not save the submission." };
+    return { error: submissionError?.message ?? dict.errorSaveSubmissionFailed };
   }
 
   let grading;
@@ -145,7 +155,7 @@ export async function gradeSubmissionAction(
       mediaType,
     });
   } catch {
-    return { error: "The file was uploaded, but AI grading failed — try again." };
+    return { error: dict.errorGradingFailed };
   }
 
   const { error: gradingError } = await supabase.from("gradings").insert({
